@@ -1,0 +1,383 @@
+<div class="grid-view-wrapper" *ngIf="isGridView">
+    <app-header></app-header>
+    <div class="more-wrapper w-100">
+        <span class="view d-flex justify-content-end" *ngIf="showViewButton">
+            <span class="grid-view orange-background d-flex justify-content-center">
+                <img class=" ms-1 mt-1 me-1 mb-1" src="../../assets/icons/grid-view-icon.svg" (click)="showGridView()"
+                    height="25" alt="">
+            </span>
+            <span>
+                <img class="list-view  ms-1 mt-1 me-1 mb-1" src="../../assets/icons/list-view-icon.svg"
+                    (click)="showListView()" height="25" alt="">
+            </span>
+        </span>
+        <div class="navigation-icons">
+            <!-- <section class="home">
+                <span class="d-flex flex-column">
+                    <h5>HOME</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="70" alt="">
+                </span>
+                <div class="image-size-name align-flex-column mt-4">
+                    <img class="image-size" src="../../assets/icons/fixtures.svg" [routerLink]="'/home'" alt="">
+                    <label class="image-name mt-2" for="">Fixtures</label>
+                </div>
+            </section> -->
+
+            <!-- <hr> -->
+            <section class="news w-100">
+                <span class="d-flex flex-column">
+                    <h5>NEWS</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="70" alt="">
+                </span>
+                <div class="list d-flex gap-2 w-100 flex-wrap">
+                    <div class="image-size-name align-flex-column mt-4" (click)="navigateToSportsNews('cricket')">
+                        <img class="image-size" src="../../assets/Images/circket-ball.png" alt="">
+                        <label class="image-name mt-2" for="">Cricket</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4" (click)="navigateToSportsNews('football')">
+                        <img class="image-size" src="../../assets/Images/football.svg" alt="">
+                        <label class="image-name mt-2" for="">Football</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4" (click)="navigateToSportsNews('tennis')">
+                        <img class="image-size" src="../../assets/Images/tennis.svg" alt="">
+                        <label class="image-name mt-2" for="">Tennis</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/breaking-news-icon.svg" [routerLink]="'/news'"
+                            alt="">
+                        <label class="image-name mt-2" for="">Breaking News</label>
+                    </div>
+                </div>
+            </section>
+            <!-- <hr> -->
+            <!-- <section class="spotlight">
+                <span class="d-flex flex-column">
+                    <h5>SPOTLIGHT</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="100" alt="">
+                </span>
+                <div class="d-flex gap-2 w-100 flex-wrap">
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/masterclass-icon.svg" alt="">
+                        <label class="image-name mt-2" for="">Masterclasses</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/expert-analysis-icon.svg" alt="">
+                        <label class="image-name mt-2" for="">Expert Analysis</label>
+                    </div>
+                </div>
+            </section> -->
+            <hr>
+
+            <!-- <section class="discover">
+                <span class="d-flex flex-column">
+                    <h5>DISCOVER</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="100" alt="">
+                </span>
+                <div class="d-flex gap-2 w-100 flex-wrap">
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/rising-talent-icon.svg" alt="">
+                        <label class="image-name mt-2" for="">Rising Talent</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/Teams-icon.svg" alt="">
+                        <label class="image-name mt-2" for="">Teams</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/more-series.png" alt="">
+                        <label class="image-name mt-2" for="">Series</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/interview-icon.svg" alt="">
+                        <label class="image-name mt-2" for="">Interviews</label>
+                    </div>
+                </div>
+            </section> -->
+            <!-- <hr> -->
+            <section class="useful-links">
+                <span class="d-flex flex-column">
+                    <h5>USEFUL LINKS</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="150" alt="">
+                </span>
+                <div class="useful d-flex gap-2 w-100 flex-wrap">
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/about-us-icon.svg" [routerLink]="'/about-us'"
+                            alt="">
+                        <label class="image-name mt-2" for="">About Us</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/policies-icon.svg" [routerLink]="'/policies'"
+                            alt="">
+                        <label class="image-name mt-2" for="">Policies</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/editorial-standards.svg"
+                            [routerLink]="'/editorial-standards'" alt="">
+                        <label class="image-name ms-4 mt-2" for="">Editorial Standards</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/affiliate-program-icon.svg"
+                            [routerLink]="'/affiliate-program'" alt="">
+                        <label class="image-name mt-2" for="">Affiliate Program</label>
+                    </div>
+                    <div class="image-size-name align-flex-column mt-4">
+                        <img class="image-size" src="../../assets/icons/contact-us-icon.svg"
+                            [routerLink]="'/contact-us'" alt="">
+                        <label class="image-name ms-2 mt-2" for="">Contact Us</label>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+<!--List View-->
+<div class="list-view-wrapper" *ngIf="isListView">
+    <app-header></app-header>
+    <div class="more-wrapper w-100">
+        <span class="view d-flex">
+            <span class="grid-view d-flex justify-content-center">
+                <img class=" ms-1 mt-1 me-1 mb-1" src="../../assets/icons/grid-view-icon.svg" height="25" alt=""
+                    (click)="showGridView()">
+            </span>
+            <span class="orange-background">
+                <img class="list-view  ms-1 mt-1 me-1 mb-1" src="../../assets/icons/list-view-icon.svg" height="25"
+                    alt="" (click)="showListView()">
+            </span>
+        </span>
+        <div class="navigation-list-icons">
+            <!-- <section class="home">
+                <span class="d-flex flex-column">
+                    <h5>HOME</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="70" alt="">
+                </span>
+                <table>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2 me-4" src="../../assets/icons/fixtures.svg"
+                                    [routerLink]="'/home'" alt="">
+                                <label class="image-name mt-2 me-4">Fixtures</label>
+                            </div>
+                        </td>
+                        <td>
+                            Latest upcoming match schedules
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <hr> -->
+            <section class="news">
+                <span class="d-flex flex-column">
+                    <h5>NEWS</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="70" alt="">
+                </span>
+                <table>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/more-news-ball.svg"
+                                    (click)="navigateToSportsNews('cricket')" alt="">
+                                <label class="image-name mt-2" for="">Cricket</label>
+                            </div>
+                        </td>
+                        <td>
+                            World Cup or IPL, catch all the matches here
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/more-news-football.svg"
+                                    (click)="navigateToSportsNews('football')" alt="">
+                                <label class="image-name mt-2" for="">Football</label>
+                            </div>
+                        </td>
+                        <td>Strong kicks, crazy goals, catch the action here
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/more-news-tennis.svg"
+                                    (click)="navigateToSportsNews('tennis')" alt="">
+                                <label class="image-name mt-2" for="">Tennis</label>
+                            </div>
+                        </td>
+                        <td>Know everything about the world of tennis here
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/breaking-news-icon.svg"
+                                    [routerLink]="'/news'" alt="">
+                                <label class="image-name mt-2" for="">Breaking News</label>
+                            </div>
+                        </td>
+                        <td>View all the updates of the sporting arena
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <hr>
+            <!-- <section class="spotlight">
+                <span class="d-flex flex-column">
+                    <h5>SPOTLIGHT</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="100" alt="">
+                </span>
+                <table>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/masterclass-icon.svg" alt="">
+                                <label class="image-name mt-2" for="">Master classes</label>
+                            </div>
+                        </td>
+                        <td>Best techniques to ace your game by experts of industry</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/expert-analysis-icon.svg" alt="">
+                                <label class="image-name mt-2" for="">Expert Analysis</label>
+                            </div>
+                        </td>
+                        <td>Pre and post match analysis from renowned experts</td>
+                    </tr>
+                </table>
+            </section>
+            <hr> -->
+            <!-- <section class="discover">
+                <span class="d-flex flex-column">
+                    <h5>DISCOVER</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="100" alt="">
+                </span>
+                <table>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/rising-talent-icon.svg" alt="">
+                                <label class="image-name mt-2" for="">Rising Talent</label>
+                            </div>
+                        </td>
+                        <td>
+                            The virtuoso of the teams, upcoming talents
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/Teams-icon.svg" alt="">
+                                <label class="image-name mt-2" for="">Teams</label>
+                            </div>
+                        </td>
+                        <td>
+                            Everything to know about your favourite team(s)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/more-series.png" height="40"
+                                    alt="">
+                                <label class="image-name mt-2" for="">Series</label>
+                            </div>
+                        </td>
+                        <td>
+                            Details of ongoing and upcoming series of sports
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/interview-icon.svg" alt="">
+                                <label class="image-name mt-2" for="">Interviews &nbsp;</label>
+                            </div>
+                        </td>
+                        <td>
+                            Catch what your favourite players say outside the stadium
+                        </td>
+                    </tr>
+                </table>
+            </section> -->
+            <!-- <hr> -->
+            <section class="useful-links">
+                <span class="d-flex flex-column">
+                    <h5>USEFUL LINKS</h5>
+                    <img class="mt-1" src="../../assets/icons/horizontal-line-icon.svg" width="150" alt="">
+                </span>
+                <table>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/about-us-icon.svg"
+                                    [routerLink]="'/about-us'" alt="">
+                                <label class="image-name mt-2" for="">About Us</label>
+                            </div>
+                        </td>
+                        <td>The A to (buz)Z of the sports’ arena</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/policies-icon.svg"
+                                    [routerLink]="'/policies'" alt="">
+                                <label class="image-name mt-2" for="">Policies</label>
+                            </div>
+                        </td>
+                        <td>Committed purely towards protecting our rights to privacy</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/editorial-standards.svg"
+                                    [routerLink]="'/editorial-standards'" alt="">
+                                <label class="image-name mt-2" for="">Editorial Standards</label>
+                            </div>
+                        </td>
+                        <td>We endeavour to preserve the most elevated measures of publication</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/affiliate-program-icon.svg"
+                                    [routerLink]="'/affiliate-program'" alt="">
+                                <label class="image-name mt-2" for="">Affiliate Program</label>
+                            </div>
+                        </td>
+                        <td>Earn from the Sports Affiliate Program</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div
+                                class="image-size-name d-flex flex-column align-items-start justify-content-start mt-4">
+                                <img class="image-size ms-2" src="../../assets/icons/contact-us-icon.svg"
+                                    [routerLink]="'/contact-us'" alt="">
+                                <label class="image-name mt-2" for="">Contact Us</label>
+                            </div>
+                        </td>
+                        <td>Allow us to put things right.</td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="mb-5"></div>
+<app-footer></app-footer>

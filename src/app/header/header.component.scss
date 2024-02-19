@@ -1,0 +1,12 @@
+.sportsbuzz-header {
+    padding: 1rem 1rem 0.5rem;
+    height: 80px;
+    @media (min-width: 280px) and (max-width: 320px) 
+    { 
+        width: 180px;
+        section{
+            gap: 0.5rem !important;
+        }
+    }
+
+}

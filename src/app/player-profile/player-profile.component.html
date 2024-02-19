@@ -1,0 +1,374 @@
+<app-header></app-header>
+<div class="player-profile-wrapper">
+    <section class="player-name">
+        <div class="align-flex-column gap-2">
+            <img class="mt-4" src="../../assets/Images/virat-kohli.svg" alt="">
+            <h5 class="orange-font"><b>VIRAT KOHLI</b></h5>
+        </div>
+        <div class="stat-overview d-flex flex-column gap-1">
+            <span class="d-flex justify-content-between gap-2">
+                <span class="d-flex gap-2">
+                    <img src="../../assets/Images/India-flag.svg" alt="">
+                    <label for=""><b>INDIA</b></label>
+                </span>
+            <label class="orange-font"><b>INTL CAREER</b></label>
+            </span>
+            <span class="d-flex justify-content-between gap-2">
+                <span class="d-flex gap-2">
+                    <img class="ms-1" src="../../assets/icons/batter-icon.svg" alt="">
+                    <label class="ms-2" for=""><b>TOP ORDER
+                            BATTER </b></label>
+                </span>
+            <label><b>(2008 - 2022)</b></label>
+            </span>
+        </div>
+    </section>
+    <section class="header d-flex justify-content-evenly">
+        <span [ngClass]="{'active': currentTab === i}" *ngFor="let tab of tabList;let i=index" (click)="changeTab(i)">
+            {{tab}}
+        </span>
+    </section>
+    <section class="player-details">
+        <mat-tab-group [selectedIndex]="currentTab">
+            <mat-tab label="Overview">
+                <div class="player-overview mt-4">
+                    <span>
+                        <label for="">Full Name</label>
+                        <p><b>Virat Kohli</b></p>
+                    </span>
+                    <span class="d-flex justify-content-start">
+                        <span class="w-50">
+                            <label for="">Born</label>
+                            <p><b>Nov 05-1998, Delhi</b></p>
+                        </span>
+                    <span class="w-50">
+                            <label for="">Age</label>
+                            <p><b>33y 211d</b></p>
+                        </span>
+                    </span>
+                    <span class="d-flex justify-content-start">
+                        <span class="w-50">
+                            <label for="">Batting style</label>
+                            <p><b>Right Hand Bat </b></p>
+                        </span>
+                    <span class="w-50">
+                            <label for="">Bowling style</label>
+                            <p><b>Right arm Medium</b></p>
+                        </span>
+                    </span>
+                    <span>
+                        <label for="">player role</label>
+                        <p><b>Top order Batter</b></p>
+                    </span>
+                    <span>
+                        <label><b>Teams</b></label>
+                        <span class="align-flex-row mt-2">
+                            <span class="w-50">
+                                <img src="../../assets/Images/India-flag.svg" alt="">
+                                <label class="ms-3" for=""><b>India</b></label>
+                            </span>
+                    <span class="w-50">
+                                <img src="../../assets/Images/India-flag.svg" alt="">
+                                <label class="ms-3" for=""><b>India A</b></label>
+                            </span>
+                    </span>
+                    <div class="mt-2">
+                        <img src="../../assets/Images/India-flag.svg" alt="">
+                        <label class="ms-3" for=""><b>India U'19</b></label>
+                    </div>
+                    </span>
+                    <div class="mt-3">
+                        <label><b>Summary</b></label>
+                        <p class="mt-2">India has given to the world many a great cricketer but perhaps none as ambitious as Virat Kohli. To meet his ambition, Kohli employed the technical assiduousness of Sachin Tendulkar and fitness that was in the league of top athletes
+                            in the world, not just cricketers. As a result, Kohli became the most consistent all-format accumulator of his time, making jaw-dropping chases look easy, and finding, in his own words, the safest possible way to score runs.
+                            Plenty of them.
+                        </p>
+                    </div>
+                </div>
+                <div class="icc-ranking mt-3">
+                    <label for=""><b>ICC Rankings</b></label>
+                    <table class="w-100 mt-2">
+                        <tr>
+                            <th>Mode</th>
+                            <th>Test</th>
+                            <th>ODI</th>
+                            <th>T20</th>
+                        </tr>
+                        <tr>
+                            <th>Batting</th>
+                            <td>13</td>
+                            <td>3</td>
+                            <td>21</td>
+                        </tr>
+                        <tr>
+                            <th>Bowling</th>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </table>
+                </div>
+            </mat-tab>
+            <mat-tab label="Stats">
+                <div class="stats mt-4">
+                    <h5>Career Average</h5>
+                    <hr>
+                    <label for="">Batting & Fielding</label>
+                    <table class="w-100 mt-3">
+                        <tr class="firts-tr">
+                            <th>Format</th>
+                            <th>Match</th>
+                            <th>Inning</th>
+                            <th>Runs</th>
+                            <th>50's</th>
+                            <th>100's</th>
+                            <th>Top Score</th>
+                            <th>Avg</th>
+                            <th>SR</th>
+                        </tr>
+                        <tr class="second-tr">
+                            <th>Test</th>
+                            <td>101</td>
+                            <td>171</td>
+                            <td>8043</td>
+                            <td>23</td>
+                            <td>18</td>
+                            <td>254*</td>
+                            <td>49.95</td>
+                            <td>Avg</td>
+                        </tr>
+                        <tr class="firts-tr">
+                            <th>ODI</th>
+                            <td>260</td>
+                            <td>251</td>
+                            <td>12311</td>
+                            <td>43</td>
+                            <td>42</td>
+                            <td>187*</td>
+                            <td>58.07</td>
+                            <td>Avg</td>
+                        </tr>
+                        <tr class="second-tr">
+                            <th>T20</th>
+                            <td>97</td>
+                            <td>89</td>
+                            <td>3296</td>
+                            <td>12</td>
+                            <td>23</td>
+                            <td>92</td>
+                            <td>51.50</td>
+                            <td>Avg</td>
+                        </tr>
+                    </table>
+                    <label class="mt-5" for="">Bowling</label>
+                    <table class="w-100 mt-3">
+                        <tr class="firts-tr">
+                            <th>Format</th>
+                            <th>Match</th>
+                            <th>Inning</th>
+                            <th>Runs</th>
+                            <th>50's</th>
+                            <th>100's</th>
+                            <th>Top Score</th>
+                            <th>Avg</th>
+                            <th>SR</th>
+                        </tr>
+                        <tr class="second-tr">
+                            <th>Test</th>
+                            <td>101</td>
+                            <td>171</td>
+                            <td>8043</td>
+                            <td>23</td>
+                            <td>18</td>
+                            <td>254*</td>
+                            <td>49.95</td>
+                            <td>Avg</td>
+                        </tr>
+                        <tr class="firts-tr">
+                            <th>ODI</th>
+                            <td>260</td>
+                            <td>251</td>
+                            <td>12311</td>
+                            <td>43</td>
+                            <td>42</td>
+                            <td>187*</td>
+                            <td>58.07</td>
+                            <td>Avg</td>
+                        </tr>
+                        <tr class="second-tr">
+                            <th>T20</th>
+                            <td>97</td>
+                            <td>89</td>
+                            <td>3296</td>
+                            <td>12</td>
+                            <td>23</td>
+                            <td>92</td>
+                            <td>51.50</td>
+                            <td>Avg</td>
+                        </tr>
+                    </table>
+                </div>
+            </mat-tab>
+            <mat-tab label="Records">
+                <div class="records mt-4">
+                    <h5>Records</h5>
+                    <hr>
+                    <span class="d-flex">
+                        <img src="../../assets/icons/playerprofile-records.svg" alt="">
+                        <span class="align-flex-row ms-3">
+                            <label for="">Rajiv Gandhi Khel Ratna:
+                            </label>
+                            <label for="">2018</label>
+                        </span>
+                    </span>
+                    <span class="d-flex mt-2">
+                        <img src="../../assets/icons/playerprofile-records.svg" alt="">
+                        <span class="align-flex-row ms-3">
+                            <label for="">Sir Garfield Sobers Award for ICC Men’s Cricketer of the
+                                Decade(2010-2020)</label>
+                        </span>
+                    </span>
+                    <span class="d-flex mt-2">
+                        <img src="../../assets/icons/playerprofile-records.svg" alt="">
+                        <span class="align-flex-row ms-3">
+                            <label for="">Padma Shri:
+                            </label>
+                            <label for="">2017</label>
+                        </span>
+                    </span>
+                    <span class="d-flex mt-2">
+                        <img src="../../assets/icons/playerprofile-records.svg" alt="">
+                        <span class="d-flex flex-column justify-content-center ms-3">
+                            <label for="">Arjuna Award:
+                            </label>
+                            <label for="">2013</label>
+                        </span>
+                    </span>
+                    <span class="d-flex mt-2">
+                        <img src="../../assets/icons/playerprofile-records.svg" alt="">
+                        <span class="d-flex flex-column justify-content-center ms-3">
+                            <label for="">Virat Kohli is the first Indian cricketer to cross 10,000 T20 runs</label>
+                        </span>
+                    </span>
+                    <span class="d-flex mt-2">
+                        <img src="../../assets/icons/playerprofile-records.svg" alt="">
+                        <span class="d-flex flex-column justify-content-center ms-3">
+                            <label for="">ICC ODI Team of the Year:
+                            </label>
+                            <label for="">2012, 2014, 2016 (captain), 2017 (captain)</label>
+                        </span>
+                    </span>
+                    <span class="d-flex mt-2">
+                        <img src="../../assets/icons/playerprofile-records.svg" alt="">
+                        <span class="d-flex flex-column justify-content-center ms-3">
+                            <label for="">ICC Test Team of the Year:
+                            </label>
+                            <label for="">2017 (captain)</label>
+                        </span>
+                    </span>
+                </div>
+            </mat-tab>
+            <mat-tab label="News">
+                <div class="news mt-4">
+                    <h5>Latest News</h5>
+                    <div class="colored-news-box d-flex gap-3 mt-3">
+                        <span class="align-flex-column">
+                            <img src="../../assets/Images/player-profile-news-image1.svg" alt="">
+                            <label class="date d-flex justify-content-center align-items-center mt-3" for="">May 19,
+                                2022</label>
+                        </span>
+                        <span class="align-flex-column">
+                            <label class="news-heading" for="">KL Rahul to lead; Hardik
+                                Pandya, Umran Malik,
+                                Arshdeep Singh in squad
+                                for SA T20Is</label>
+                            <label class="news-detail" for="">Rohit Sharma, Virat Kohli, Jasprit Bumrah among the
+                                premier players rested for the series.</label>
+                        </span>
+                    </div>
+                    <div class="other-news-box d-flex gap-3 mt-3">
+                        <span class="align-flex-column">
+                            <img src="../../assets/Images/player-profile-news-image2.svg" alt="">
+                            <label class="date d-flex justify-content-center align-items-center mt-3" for="">May 19,
+                                2022</label>
+                        </span>
+                        <span class="align-flex-column">
+                            <label class="news-heading" for="">Kohli thanks Mumbai as Royal Challengers break into wild
+                                celebrations after qualifying for IPL playoffs</label>
+                            <label class="news-detail" for="">"We needed another team, but from now on it's all us,"
+                                Glenn Maxwell said.</label>
+                        </span>
+                    </div>
+                    <div class="colored-news-box d-flex gap-3 mt-3">
+                        <span class="align-flex-column">
+                            <img src="../../assets/Images/player-profile-news-image3.svg" alt="">
+                            <label class="date d-flex justify-content-center align-items-center mt-3" for="">May 19,
+                                2022</label>
+                        </span>
+                        <span class="align-flex-column">
+                            <label class="news-heading" for="">'Relaxed' Kohli rediscovers a bit of his mojo: 'You just
+                                need the right perspective'</label>
+                            <label class="news-detail" for="">"With the very first shot I knew that tonight's probably
+                                the time I have to back myself more and go for my shots"</label>
+                        </span>
+                    </div>
+                    <div class="other-news-box d-flex gap-3 mt-3">
+                        <span class="align-flex-column">
+                            <img src="../../assets/Images/player-profile-news-image2.svg" alt="">
+                            <label class="date d-flex justify-content-center align-items-center mt-3" for="">May 19,
+                                2022</label>
+                        </span>
+                        <span class="align-flex-column">
+                            <label class="news-heading" for="">Kohli thanks Mumbai as Royal Challengers break into wild
+                                celebrations after qualifying for IPL playoffs</label>
+                            <label class="news-detail" for="">"We needed another team, but from now on it's all us,"
+                                Glenn Maxwell said.</label>
+                        </span>
+                    </div>
+                    <div class="colored-news-box d-flex gap-3 mt-3">
+                        <span class="align-flex-column">
+                            <img src="../../assets/Images/player-profile-news-image1.svg" alt="">
+                            <label class="date d-flex justify-content-center align-items-center mt-3" for="">May 19,
+                                2022</label>
+                        </span>
+                        <span class="align-flex-column">
+                            <label class="news-heading" for="">KL Rahul to lead; Hardik
+                                Pandya, Umran Malik,
+                                Arshdeep Singh in squad
+                                for SA T20Is</label>
+                            <label class="news-detail" for="">Rohit Sharma, Virat Kohli, Jasprit Bumrah among the
+                                premier players rested for the series.</label>
+                        </span>
+                    </div>
+                    <div class="other-news-box d-flex gap-3 mt-3">
+                        <span class="align-flex-column">
+                            <img src="../../assets/Images/player-profile-news-image2.svg" alt="">
+                            <label class="date d-flex justify-content-center align-items-center mt-3" for="">May 19,
+                                2022</label>
+                        </span>
+                        <span class="align-flex-column">
+                            <label class="news-heading" for="">Kohli thanks Mumbai as Royal Challengers break into wild
+                                celebrations after qualifying for IPL playoffs</label>
+                            <label class="news-detail" for="">"We needed another team, but from now on it's all us,"
+                                Glenn Maxwell said.</label>
+                        </span>
+                    </div>
+                    <div class="colored-news-box d-flex gap-3 mt-3">
+                        <span class="align-flex-column">
+                            <img src="../../assets/Images/player-profile-news-image3.svg" alt="">
+                            <label class="date d-flex justify-content-center align-items-center mt-3" for="">May 19,
+                                2022</label>
+                        </span>
+                        <span class="align-flex-column">
+                            <label class="news-heading" for="">'Relaxed' Kohli rediscovers a bit of his mojo: 'You just
+                                need the right perspective'</label>
+                            <label class="news-detail" for="">"With the very first shot I knew that tonight's probably
+                                the time I have to back myself more and go for my shots"</label>
+                        </span>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </section>
+</div>
+<app-footer></app-footer>

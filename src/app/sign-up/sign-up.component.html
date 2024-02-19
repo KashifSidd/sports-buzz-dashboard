@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="sign-up-wrapper w-100">
+    <div class="welcome">
+        <h1>SIGN UP</h1>
+        <label for="">Already have an account? &nbsp;<a class="orange-font">Verify your email</a> </label>
+    </div>
+    <div class="sign-up-form d-flex align-items-center w-100 mt-4">
+        <form class="form w-100 d-flex gap-4 flex-column position-relative">
+            <input type="text" placeholder="OTP" *ngIf="registrationForm">
+            <input type="text" placeholder="E-mail" *ngIf="signInForm">
+        </form>
+        <div class="action-btn d-flex justify-content-center position-absolute gap-3 flex-column align-items-centre">
+            <!-- <button class="btn login-form-submit-btn mt-3" *ngIf="signInForm">Sign Up</button>
+            <button class="btn login-form-submit-btn mt-3" *ngIf="registrationForm">Submit</button> -->
+            <label class="text-label justify-content-center d-flex" *ngIf="signInForm">
+                <a class="btn mt-3 w-75 login-form-submit-btn" (click)="showRegistrationForm()">Sign Up</a></label>
+            <label class="text-label justify-content-center d-flex" *ngIf="registrationForm">
+                <a class="btn mt-3 w-75 login-form-submit-btn" (click)="showSignInForm()"> Submit </a></label>
+            
+                <label class="text-label justify-content-center d-flex mt-2 ">Or sign up with</label>
+        </div>
+    </div>
+    <div class="social-btn gap-3 d-flex flex-row justify-content-center align-items-center">
+            <img src="../../assets/icons/google-button.svg" alt="">
+        <img src="../../assets/icons/twitter-button.svg" alt="">
+        <img src="../../assets/icons/facebook-button.svg" alt="">        
+    </div>
+</div>
+<!-- <app-footer></app-footer> -->

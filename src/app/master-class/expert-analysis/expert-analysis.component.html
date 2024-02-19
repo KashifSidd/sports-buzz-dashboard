@@ -1,0 +1,418 @@
+<app-header></app-header>
+<div class="expert-analysis-wrapper">
+    <div class="expert-banner w-100">
+        <img class="master-banner w-100" src="../../assets/Images/master-banner.svg" alt="">
+        <img class="w-100" src="../../assets/Images/header-img.svg" alt="">  
+    </div>  
+</div>
+<div class="video-section">
+    <div class="d-flex flex-column mt-4 px-3">
+        <span class="player-name">
+            <label class="orange-font" for="">JONTY RHODES</label>
+        </span>
+        <span class="player-detail justify-content-center">
+            <label class="mt-1 px-3"for="">SA Cricket Commentator</label>
+        </span>
+    </div>
+    <div class="horizontal-video-scroll">
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">Ind vs SA Pre Match Analysis ft. Jonty Rhodes
+                        Description: Know all about the pitch, the weather, playing XI, their strengths, and more with the expertise of an ex-star player himself!
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/Videos/JR-2.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA: Post-Match Analysis Ft. Jonty Rhodes
+                        Description: What a chase by South Africa!. Proteas registered a comfortable seven-wicket win with 5 balls to spare.                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/Videos/JR-3.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA | 3rd T20I | Pre-match analysis ft Jonty Rhodes
+                        Description: Catch a quick pre-match analysis of the pitch, players, and factual corrections the teams need to follow.                                                
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/Videos/JR-4.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA | 4th T20I | Pre-match analysis ft Jonty Rhodes
+                        Description: Jonty Rhodes, astonishingly pre-analyses the most awaited India vs South Africa, do or die match set.                                                
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/Videos/JR-5.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA | 4th T20I | Post-match analysis ft Jonty Rhodes
+                        Description: The 4th T20I of India vs South Africa saw some massively hit performances from the bowling line of Indian origin.                                                
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/Videos/JR-6.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">India vs South Africa | Pre-Match Analysis | 19 June ODI | Jonty Rhodes
+                        Description: Let's just dig into the most awaited India vs South Africa match and enjoy his predictions.                                                
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/Videos/JR-7.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">India vs South Africa | 5th T20I | Post Match Analysis | Jonty Rhodes
+                        Description: The 5th T20I of India vs South Africa has been abandoned due to rain. Learn about the overall performance of both teams.                                                
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/Videos/JR-8.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">SL vs AUS | 4th ODI | Post Match Analysis | Jonty Rhodes
+                        Description: The 4th ODI of Sri Lanka vs Australia has been great and once again, Sri Lanka won the match by 4 runs.                                                
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/Videos/JR-9.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">India vs Ireland 2nd T20I | Post Match Analysis | Jonty Rhodes
+                        Description: The 2nd T20I between India and Ireland has been great and India won by 4 runs.                                                
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source class="mt-2" src="../../../assets/Videos/JR-10.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">Sri Lanka vs Australia | Pre Match Analysis | 2nd Test Match | Jonty Rhodes 
+                        Description: Cath all the buzzing factors about Sri Lanka vs Australia match.                                                
+                        </label>
+                </span>
+            </div>
+        </section>
+</div>
+<div class="video-section">
+    <div class="d-flex flex-column mt-3 px-3">
+        <span class="player-name">
+            <label class="orange-font" for="">AAKASH CHOPRA</label>
+        </span>
+        <span class="player-detail justify-content-center">
+            <label class="mt-1 px-2"for="">Indian Cricket Commentator</label>
+        </span>
+    </div>
+    <div class="horizontal-video-scroll">
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-1.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">Aakash Chopra Pre-match analysis of India vs Africa a 5-match T20I series
+                        Description: ''This 5-match T20I series is a return of favor to South Africa" Ft. Aakash Chopra.
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-2.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA 2nd T20 Buzzing Pre-match Analysis ft. Aakash Chopra
+                        Description: Get to know the ins and outs of the match, the players, and the pitch by the man himself!                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-3.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA | 3rd T20I | Pre-match analysis ft Aakash Chopra
+                        Description: South Africa leads by 2-0, already a do-or-die match for the Indians. Peek into the details ranging from India's need to win to South Africa's performance in this exclusive video.                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-4.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA | 4th T20I! Pre Match Analysis ft. Aakash Chopra
+                        Description: Catch the latest updates on who's performance will pay off in the semi-finals.                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-5.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA | Pre-Match Analysis | 19 June 2022
+                        Description: Dig into the video and loot at all his predictions about the final game.                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-6.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">SL vs AUS | 1st ODI | Pre-match analysis ft Aakash Chopra
+                        Description:  Catch the latest updates on the T20I Series - about the pitch, the form, and playing XI.                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-7.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">SL vs AUS | 2nd ODI | Pre Match Analysis ft Aakash Chopra
+                        Description: “Glenn  Maxwell - the ball of fire." Hear Aakash Chopra analyse the Sri Lanka vs Australia 2nd of the 5 ODI matches.                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-8.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">SL vs AUS | 3rd ODI | 19 June | Pre Analysis
+                        Description: Akash Chopra spilling his expertise on Sri Lanka vs Australia ODI match.                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-9.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">SL vs AUS | 3rd ODI | Post Match Analysis | Aakash Chopra
+                        Description: The 3rd ODI of Sri Lanka vs Australia has been amazing and Sri Lanka won the match by 6 wickets.                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC-10.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">West Indies vs Bangladesh | 3rd T20 | Sportsbuzz
+                        Description: Catch the latest glimpse of Aakash Chopra in this exclusive pre-match analysis video and stay tuned for more!                        
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/AC 11.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">India vs England ODI series | Post Match Analysis | Aakash Chopra
+                        Description: The 3rd T20I between India and England was great and England won the match by 17 runs. However, India lead the series by 2-1 and won.                        
+                        </label>
+                </span>
+            </div>
+        </section>
+</div>
+<div class="video-section">
+    <div class="d-flex flex-column mt-3 px-3">
+        <span class="player-name">
+            <label class="orange-font" for="">MONTY PANESAR</label>
+        </span>
+        <span class="player-detail justify-content-center">
+            <label class="mt-1 px-2"for="">Former International Cricketer</label>
+        </span>
+    </div>
+    <div class="horizontal-video-scroll">
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/MP-1.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">England VS New Zealand 2nd Test Match Pre-Match Analysis Ft. Monty Panesar
+                        Description: ENG and NZ are ready to play in the second Test game at the Trent Bridge in Nottingham. Unfortunately, Kane Williamson has tested positive and he will not be a part of this match.
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/MP-2.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA 2nd T20I Post Match Analysis ft Monty Panesar
+                        Description: Monty Panesar analyzed all that went right and wrong for the South African Cricket Team and Indian Cricket Team respectively.
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/MP-3.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">SL vs AUS | Post Match Analysis ft. Monty Panesar
+                        Description: SL vs AUS 1st ODI highlights: Sri Lanka posted 300 runs on the scoreboard wherein Australia gave a tough battle & scored 282 runs in 44 overs (Improvised target due to rain).
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/MP-4.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">SL vs AUS | 2nd ODI | Post-match analysis ft Monty Panesar
+                        Description: Catch Monty Panesar praise Pat Cummins after his spectacular bowling.
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/MP-5.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">IND vs SA | 4th T20I | Post-match analysis ft Monty Panesar
+                        Description: Catch Panesar decipher the entire match post its commencement.
+                        </label>
+                </span>
+            </div>
+        </section>
+        <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+            <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                <source src="../../../assets/Videos/MP-6.mp4" type="video/mp4">
+            </video>
+            <!-- <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                class="overlay position-absolute justify-content-center" height="60"> -->
+            <div class="paragraph-1">
+                <span class="d-flex justify-content-between">
+                    <label for="">Sri Lanka vs Australia | 3rd ODI | 19 June 2022
+                        Description: The 3rd ODI of Sri Lanka vs Australia has been amazing and Sri Lanka won the match by 6 wickets.
+                        </label>
+                </span>
+            </div>
+        </section>
+</div> 

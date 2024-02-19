@@ -1,0 +1,95 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ngx-toastr/toastr";
+body {
+    margin: 0;
+    height: 100vh;
+    font-family: "PT Sans";
+    font-style: normal;
+    font-weight: 300;
+    // background-image: url('./assets/Images/temp-background.svg');
+    background-repeat: no-repeat;
+    background-color: #000000f2 !important;
+    color: #ffffff !important;
+}
+
+.orange-font {
+    color: #FF9D42;
+}
+.align-flex-row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.align-flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.white-font{
+    color: #ffffff !important;
+    font-size: 16px !important;
+}
+
+.icc-rankings-wrapper,.home-wrapper,.view-details-wrapper,.player-profile-wrapper {
+    .mat-tab-header {
+        display: none;
+    }
+}
+
+.mat-tab-label {
+    font-size: 18px !important;
+    color: #ffffff !important;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #FF9D42 !important;
+}
+
+.mat-tab-header-pagination {
+    background-color: transparent;
+    .mat-tab-header-pagination-chevron {
+        border-color: #ffc107;
+    }
+}
+
+.mat-tab-body-content {
+    display: block;
+}
+
+.mat-expansion-panel {
+    background: none !important;
+    border-radius: 10px !important;
+}
+
+.mat-expansion-panel-header {
+    background-color: #2A2B2C !important;
+    border-radius: 0 !important;
+    .mat-expansion-indicator::after {
+        border-width: 0 4px 4px 0px;
+        color: #fff;
+    }
+    .mat-expansion-panel-header-title {
+        color: #fff !important;
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+
+.mat-expansion-panel-body {
+    padding: 0 15px 15px !important;
+    background-color: #1F2022 !important;
+}
+
+.footer {
+    // position: fixed;
+    bottom: 0;
+}
+
+.footer-wrapper {
+    .mat-tab-group-inverted-header .mat-ink-bar {
+        bottom: 0;
+        top: auto;
+    }
+}

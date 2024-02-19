@@ -1,0 +1,25 @@
+template_path: ecs-service.yaml
+parameters:
+  Environment: {{ environment }}
+  Image: {{ environment_variable.IMAGE }}
+  VpcId: {{ vpc_id }}
+  LoadBalancerListenerArn: !stack_output_external sportsbuzz-user-backend-staging-ap-south-1-load-balancer::LoadBalancerListenerHTTPSArn
+  EnvFileLocationArn: arn:aws:s3:::office-automation-env-file/sportzbuzz-user-backend.env
+  ServicePort: "{{ service_port }}"
+  TaskName: {{ project_code }}
+  ClusterName: {{ cluster_name }}
+  PrivateSubnetIds: {{ private_subnet_ids }}
+  DesiredCount: "1"
+  RetentionInDays: "7"
+  DeregistrationDelay: "10"
+  HostHeader: ui.staging.sportsbuzz.com
+  Priority: "40"
+  CPU: "256"
+  Memory: "512"
+  MaxCapacity: "3"
+  MinCapacity: "2"
+  ContainerSecurityGroupId: !stack_output {{ environment }}/{{ region }}/common.yaml::ContainerSecurityGroupId 
+  ExecutionRoleArn: !stack_output {{ environment }}/{{ region }}/common.yaml::ExecutionRoleArn
+  TaskRoleArn: !stack_output {{ environment }}/{{ region }}/common.yaml::TaskRoleArn
+  ProjectTagValue: {{ project }}
+  ServiceTagValue: {{ project_code }}

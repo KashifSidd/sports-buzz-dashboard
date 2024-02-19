@@ -1,0 +1,140 @@
+<mat-tab-group>
+    <mat-tab label="LIVE">
+        <div class="home-wrapper__match-cards">
+            <div class="home-wrapper__match-cards__match-details-card__all-matches mt-4"
+              *ngFor="let live of liveMatchesData">
+              <section class="tournament-name-status row">
+                <label class="tournament-name col-9">{{live.seasonName}}</label>
+                <label class="tournament-status col-3">Live</label>
+              </section>
+              <table class="team-logo-name-score mt-4 w-100">
+                <tr>
+                  <td class="team-logo">
+                    <img src='{{live.homeTeamUrl}}'>
+                  </td>
+                  <td class="team-logo">
+                    <label>{{live.homeTeamName}}</label>
+                  </td>
+                  <td class="score">
+                    <p>{{live.displayScoreOver.homeDisplayOver }} {{live.displayScoreOver.homeDisplayScore}}</p>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="team-logo">
+                    <img src='{{live.awayTeamUrl}}'>
+                  </td>
+                  <td class="team-logo">
+                    <label>{{live.awayTeamName}}</label>
+                  </td>
+                  <td class="score">
+                    <p>{{live.displayScoreOver.awayDisplayOver }} {{live.displayScoreOver.awayDisplayScore}}</p>
+                  </td>
+                </tr>
+              </table>
+              <section class="toss-status row align-items-center">
+                <label class="col-8">{{live.displayMessage}}</label>
+                <a class="col-4">View Details</a>
+              </section>
+            </div>
+          </div>
+    </mat-tab>
+
+    <mat-tab label="UPCOMING">
+        <section class="home-wrapper__upcoming-matches mt-4">
+            <div class="upcoming-match-cards">
+              <div class="upcoming-match-details-card mt-3" *ngFor="let upcoming of upcomingMatchesData">
+                <section class="tournament-name-details-navigation d-flex justify-content-between">
+                  <label class="tournament-name">{{upcoming.seasonName}}</label>
+                  <span class="details-navigation d-flex justify-content-around gap-2 align-items-center">
+                    <a>View Details</a>
+                    <img src="../../assets/icons/small-right-arrow.svg">
+                  </span>
+                </section>
+                <section class="match-details d-flex justify-content-between">
+                  <div class="match-name-flag-team align-items-center d-flex gap-3">
+                    <span class="match-name d-flex flex-column">
+                      <label>1<sup>st</sup></label>
+                      <label>T20</label>
+                    </span>
+                    <span class="flag-team">
+                      <div class="flag-team-name">
+                        <img src='{{upcoming.homeTeamUrl}}'>&nbsp;{{upcoming.homeTeamCode}}
+                      </div>
+                      <div class="flag-team-name">
+                        <img src='{{upcoming.awayTeamUrl}}'>&nbsp;{{upcoming.awayTeamCode}}
+                      </div>
+                    </span>
+                  </div>
+                  <div class="match-date-time d-flex flex-column">
+                    <label class="match-time">{{upcoming.matchScheduledDate | date: 'shortTime'}}</label>
+                    <label class="match-date">{{upcoming.matchScheduledDate | date: 'd MMM'}}</label>
+                  </div>
+                </section>
+                <section class="match-result d-flex justify-content-center">
+                  {{upcoming.displayMessage}}
+                </section>
+              </div>
+            </div>
+          </section>
+    </mat-tab>
+    <mat-tab label="FINISHED">
+        <section class="home-wrapper__finished-matches mt-4">
+            <div class="finished-match-cards">
+              <div class="finished-match-details-card mt-3" *ngFor="let finished of finishedMatchesData">
+                <section class="tournament-name-details-navigation d-flex justify-content-between">
+                  <label class="tournament-name">{{finished.seasonName}}</label>
+                  <span class="details-navigation d-flex justify-content-around gap-2 align-items-center">
+                    <a>View Details</a>
+                    <img src="../../assets/icons/small-right-arrow.svg">
+                  </span>
+                </section>
+                <section class="match-details d-flex justify-content-between">
+                  <div class="match-name-flag-team align-items-center d-flex gap-3">
+                    <span class="flag-team w-100">
+                      <table class="flag-team-name w-100">
+                        <tr>
+                          <td rowspan=2 class="match-name">
+                            <span class="match-name d-flex flex-column">
+                              <label>1<sup>st</sup></label>
+                              <label>T20</label>
+                            </span>
+                          </td>
+                          <td>
+                            <img src='{{finished.homeTeamUrl}}'>
+                          </td>
+                          <td class="team-name">
+                            <label class="team-name">{{finished.homeTeamCode}}</label>
+                          </td>
+                          <td class="team-score">
+                            <label class="team-score">{{finished.displayScoreOver.homeDisplayScore}}</label>
+                          </td>
+                          <td class="over">
+                            <label class="over">{{finished.displayScoreOver.homeDisplayOver}}</label>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <img src='{{finished.awayTeamUrl}}'>
+                          </td>
+                          <td class="team-name">
+                            <label class="team-name">{{finished.awayTeamCode}}</label>
+                          </td>
+                          <td class="winning-team-score">
+                            <label class="winning-team-score">{{finished.displayScoreOver.awayDisplayScore}}</label>
+                          </td>
+                          <td class="over">
+                            <label class="over">{{finished.displayScoreOver.awayDisplayOver}}</label>
+                          </td>
+                        </tr>
+                      </table>
+                      <div class="match-result d-flex align-items-center">
+                        {{finished.displayMessage}}
+                      </div>
+                    </span>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </section>
+    </mat-tab>
+</mat-tab-group>

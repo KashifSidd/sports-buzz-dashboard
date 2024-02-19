@@ -1,0 +1,36 @@
+<app-header></app-header>
+<img class="w-100" src='{{detailedNews.mainImgUrl}}' alt='{{detailedNews.mainImgAlt}}'>
+<div class="detail-news-wrapper">
+    <div>
+        <p>
+            {{detailedNews.postSummary}}
+        </p>
+        <!-- <p class="mt-5">INDIA TOUR OF ENGLAND, 2022</p> -->
+        <h4 class="mt-5">{{detailedNews.name}}</h4>
+        <p class="mt-4 mb-0">by <img src="../../../assets/icons/sportsbuzz Final Logo.svg" alt="" height="25">Staff</p>
+        <p>• Published on {{detailedNews.publishedOn | date: 'EEEE, MMMM d, y h:mm a'}}</p>
+        <!-- <p>Virat Kohli is a doubtful starter for the first ODI against England at The Oval in London on Tuesday (July 11). According to Board of Control for Cricket in India (BCCI) sources in India and England, the star batsman has a groin niggle and a decision
+            on his participation in the first of the three-match series will be taken on Tuesday morning. "The injury is not looking serious at this stage. The medical team is examining. He was taken for scans and his chances of playing will depend on
+            the results of the scan," sources have told Cricbuzz. India have sufficient back-up players in the 17-member squad for the three-match series. The second and third ODIs are at Lord's and Old Trafford, on July 14 and 17.</p> -->
+            <div [innerHtml]="postBody"></div>
+    </div>
+    <!-- <div>
+        <h4>YOU MAY LIKE</h4>
+        <table class="mt-3">
+            <tr>
+                <td>
+                    <img src="../../assets/Images/news-latest-news.svg" alt="">&nbsp;&nbsp;&nbsp;
+                </td>
+
+                <td>
+                    <span>
+                        <label class="time" for="">2 days ago</label>
+                        <label class="headline" for="">Jorginho 5/10, Pulisic 6/10 as Chelsea drop points in final
+                            minutes of Brighton draw</label>
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div> -->
+</div>
+<!-- <app-footer></app-footer> -->

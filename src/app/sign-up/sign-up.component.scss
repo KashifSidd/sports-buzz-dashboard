@@ -1,0 +1,51 @@
+.sign-up-wrapper {
+    height: 100vh;
+    padding:1rem 1rem;
+
+    .sign-up-form {
+        form {
+            padding: 3rem 1rem;
+
+            input {
+                background-color: transparent;
+                color: #FFFFFF;
+                border: none;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+            }
+
+            .form-text-box {
+                border: 2px solid rgba(255, 255, 255, 0.25);
+                border-radius: 8px;
+                padding-bottom: 5rem;
+            }
+        }
+
+        .action-btn {
+            width: 90%;
+            top: 300px;
+
+            .login-form-submit-btn,.text-label
+            .btn {
+                background-color: #FF9D42;
+                border-radius: 25px;
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            .text-label {
+                color: rgba(255, 255, 255, 0.541);
+            }
+           
+        }
+    }
+    .social-btn{
+        padding: 8rem;
+        @media (min-width: 270px) and (max-width: 319px) 
+        { 
+            padding: 6rem 0rem 0rem 0rem;
+            width: 250px;
+            gap: 0px !important;
+        }
+    }
+    
+}

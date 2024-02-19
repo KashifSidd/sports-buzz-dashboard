@@ -1,0 +1,99 @@
+.header {
+    font-size: 20px;
+    height: 50px;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    span {
+        padding: 0 5px 5px;
+        white-space: nowrap;
+    }
+
+    .active {
+        color: #ff9d42;
+        border-bottom: 2px solid #ff9d42;
+    }
+}
+
+.icc-rankings {
+.teams-events {
+  .events {
+      label {
+          color: #ff9d42;
+      }
+  }
+}
+
+.icc-rankings-tabs {
+  height: fit-content;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+      display: none;
+  }
+
+  .series {
+      .overall,
+      .test,
+      .odi,.t20{
+          transform: perspective(800px) rotateY(-33deg);
+          border-radius: 5px;
+          padding: 1rem;
+          background-color: #1F2022;
+          width: fit-content;
+          height: 1.5rem;
+          @media (min-width: 280px) and (max-width: 320px) 
+          { 
+              width: 280px;
+          }
+      }
+
+      .heading {
+          font-size: 12px;
+          font-weight: 500;
+      }
+
+      .rankings-tabs {
+          font-size: 16px;
+          font-weight: 500;
+      }
+
+      .orange-background {
+          background-color: #ff9d42;
+      }
+  } 
+  table{
+    tr:first-child{
+        background-color: #1F2022;
+        font-size: 16px;
+          font-weight: 400;
+    }
+    tr{
+        font-size: 14px;
+          font-weight: 500;
+        border-bottom: 1px solid #1F2022;
+        td,th{
+            padding: 1rem;
+        }
+    }
+   
+    
+  }    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+}

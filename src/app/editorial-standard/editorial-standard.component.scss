@@ -1,0 +1,159 @@
+.editorial-standard-header {
+    background-image: url('../../assets/Images/editorial-standards-bg-image.svg');
+    padding: 0.5rem 0rem 1rem 0rem;
+    // height: 33vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .editorial-standard-header-border {
+        background-color: rgba(72, 73, 74, 0.7);
+        margin: 3rem;
+        padding: 1.5rem;
+
+        @media only screen and (min-device-width: 320px) and (max-device-width: 810px) {
+            margin: 1rem;
+            padding: 0 1rem;
+        }
+
+        h3 {
+            color: #FFFFFF;
+            margin-bottom: 0;
+
+            @media only screen and (min-device-width: 320px) and (max-device-width: 810px) {
+                margin: 1rem 0;
+                font-size: 16px;
+            }
+        }
+
+        hr {
+            color: #FFFFFF;
+            margin: 0.5rem 2rem 0 0;
+
+            @media only screen and (min-device-width: 320px) and (max-device-width: 810px) {
+                margin: 0rem 0rem;
+            }
+        }
+
+        p {
+            color: #FFFFFF;
+            margin: 1rem 0 0 0;
+
+            @media only screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.our-editorial-process {
+    border-radius: 25px;
+    background-color: #FF9D42;
+    padding: 5px 15px;
+    margin: 0rem 5rem 2rem;
+    
+}
+
+.editorial-standard-submenu {
+    // height: 41vh;
+
+    .submenu-numbering-div {
+        margin: 0 0rem 0 0rem;
+
+        @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+            margin: 0rem 0rem 0 0;
+            // height: 55vh;
+        }
+
+        .num-box {
+            height: 6rem;
+            background-color: none;
+            font-size: 4rem;
+            font-weight: bold;
+            text-align: center;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 2px black, 0 0 25px orange, 0 0 5px #FF9D42;
+
+            @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+
+                font-size: 3rem;
+                margin: 0rem 0rem 0rem 0rem;
+            }
+        }
+    }
+
+    .submenu-text-div {
+        @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                // height: 55vh;
+        }
+
+        .text-box {
+            height: 6rem;
+            padding: 2.3rem 2rem;
+
+            @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                padding: 1rem 1rem;
+            }
+
+            p {
+                color: #FFFFFF;
+
+                @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                    font-size: 12px;
+                    margin: 0rem 0rem 0rem 0rem;
+                    padding: 0rem 0rem;
+                }
+            }
+        }
+    }
+}
+
+hr {
+    color: #FFFFFF;
+    margin: 0rem 10rem;
+
+    @media only screen and (min-device-width: 280px) and (max-device-width: 810px) {
+        margin: 2rem 2rem;
+    }
+}
+
+.editorial-standard-last-section-discription {
+    // margin: 1rem 13rem;
+    @media only screen and (min-device-width: 280px) and (max-device-width: 810px) {
+        font-size: 12px;
+        margin: 0rem 0rem 0rem 0rem;
+        padding: 1rem 2rem;
+        text-align: justify;
+    }
+  
+}
+
+.editorial-standard-form {
+    margin: 2rem;
+    background-color: #000000;
+    border-radius: 10px;
+    margin-bottom: 5rem;
+
+    input {
+        background-color: transparent;
+        color: #FFFFFF;
+        margin: 2rem 5rem;
+        border: none;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+
+        @media only screen and (min-device-width: 280px) and (max-device-width: 810px) {
+            margin: 2rem 1.2rem 0rem 1.2rem;
+        }
+    }
+
+    .editorial-standard-form-submit-btn {
+        background-color: #FF9D42;
+        color: #FFFFFF;
+        border-radius: 25px;
+        padding: 10px 6rem;
+
+        @media only screen and (min-device-width: 280px) and (max-device-width: 810px) {
+            top: 10px;
+            margin: 3rem 0.5rem 2rem 0.5rem;
+        }
+    }
+}

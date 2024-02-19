@@ -1,0 +1,286 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  Deploy the ECS Service
+
+Parameters:
+  Environment:
+    Type: String
+    Description: (Required) The environment that this is deploying to
+    Default: staging
+    AllowedValues:
+      - staging
+      - prod
+  Image: 
+    Type: String
+    Description: The docker image to run
+
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VPC ID
+
+  LoadBalancerListenerArn: 
+    Type: String
+    Description: The ARN of the load balancer
+
+  EnvFileLocationArn:
+    Type: String
+    Description: The env file location of the Arn
+
+  ServicePort:
+    Type: String
+    Description: The Port on which the container runs
+    Default: "80"
+
+  TaskName:
+    Type: String
+    Description: The name of the task
+    
+  ClusterName:
+    Type: String
+    Description: The name of the ECS Cluster
+
+  PrivateSubnetIds:
+    Type: List<AWS::EC2::Subnet::Id>
+    Description: The ID of the private subnets
+    Default: subnet-0151b6981d7aa5913, subnet-0903fe22aeb68f517
+
+  DesiredCount:
+    Type: String
+    Description: Desired Count of task in services
+    Default: 1
+
+  RetentionInDays: 
+    Type: String
+    Description: Retention in Days
+
+  DeregistrationDelay: 
+    Type: String
+    Description: Deregistration delay for target group 60
+
+  HostHeader:
+    Type: String
+    Description: Host Header value
+
+  Priority:
+    Type: String
+    Description: Proiority
+
+  ContainerSecurityGroupId:
+    Type: String
+    Description: String
+
+  ExecutionRoleArn:
+    Type: String
+    Description: Execution Role ARN
+
+  TaskRoleArn:
+    Type: String
+    Description: Task Role ARN
+
+  HealthCheckPath:
+    Type: String
+    Description: Health Check Path
+    Default: "/"
+
+  MaxCapacity:
+    Type: String
+    Description: Maximum Capacity
+    Default: 4
+
+  MinCapacity:
+    Type: String
+    Description: Minimum Capacity
+    Default: 2
+
+  AutoScalingTargetCPUUtilization:
+    Type: String
+    Description: Health Check Path
+    Default: 60
+
+  CPU:
+    Type: String
+    Description: CPU of the container
+    Default: 1024
+
+  Memory:
+    Type: String
+    Description: Memory of the container
+    Default: 2048
+
+  ProjectTagValue:
+    Type: String
+    Description: The name of the project
+
+  ServiceTagValue:
+    Type: String
+    Description: The name of the service
+
+Resources:
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties: 
+      ContainerDefinitions: 
+        - Cpu: !Ref CPU
+          # EntryPoint: 
+          #   - String
+          # Environment: 
+          # EnvironmentFiles: 
+          #   - Value: !Ref EnvFileLocationArn
+          #     Type: s3
+          Image: !Ref Image
+          LinuxParameters:
+            InitProcessEnabled: true
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-region: !Ref AWS::Region
+              awslogs-group: !Ref LogGroup
+              awslogs-stream-prefix: ecs
+          Memory: !Ref Memory
+          # MemoryReservation: Integer
+          Name: !Ref TaskName
+          PortMappings: 
+            - ContainerPort: !Ref ServicePort
+          Privileged: false
+          PseudoTerminal: false
+          ReadonlyRootFilesystem: false
+          # Secrets: 
+          #   - Secret
+          # WorkingDirectory: String
+      Cpu: !Ref CPU
+      # EphemeralStorage: 
+      #   EphemeralStorage
+      ExecutionRoleArn: !Ref ExecutionRoleArn
+      Family: !Ref TaskName
+      Memory: !Ref Memory
+      NetworkMode: awsvpc
+      # RuntimePlatform: 
+      #   RuntimePlatform
+      Tags:
+      - Key: Project
+        Value: !Ref ProjectTagValue
+      - Key: Service
+        Value: !Ref ServiceTagValue
+      - Key: Environment
+        Value: !Ref Environment
+      RequiresCompatibilities:
+      - EC2
+      - FARGATE
+      TaskRoleArn: !Ref TaskRoleArn
+
+  Service:
+    Type: AWS::ECS::Service
+    DependsOn: 
+    - ListenerRule
+    Properties:
+      ServiceName:  !Sub ${TaskName}-service
+      Cluster: !Sub arn:aws:ecs:${AWS::Region}:${AWS::AccountId}:cluster/${ClusterName}
+      TaskDefinition: !Ref TaskDefinition
+      EnableExecuteCommand: true
+      DeploymentConfiguration:
+        DeploymentCircuitBreaker:
+          Enable: true
+          Rollback: true
+      DesiredCount: !Ref DesiredCount
+      LaunchType: FARGATE
+      PropagateTags: SERVICE
+      LoadBalancers:
+        - TargetGroupArn: !Ref TargetGroup
+          ContainerPort: !Ref ServicePort
+          ContainerName: !Sub ${TaskName}
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          # AssignPublicIp: DISABLED
+          Subnets: !Ref PrivateSubnetIds
+          SecurityGroups:
+            - !Ref ContainerSecurityGroupId
+      Tags:
+      - Key: Project
+        Value: !Ref ProjectTagValue
+      - Key: Service
+        Value: !Ref ServiceTagValue
+      - Key: Environment
+        Value: !Ref Environment
+
+  LogGroup: 
+    Type: AWS::Logs::LogGroup
+    Properties: 
+      LogGroupName: !Sub /ecs/${TaskName}-ecs
+      RetentionInDays: !Ref RetentionInDays
+
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      TargetType: ip
+      Name: !Sub ${TaskName}-tg
+      Port: !Ref ServicePort
+      HealthCheckPath: !Ref HealthCheckPath
+      Protocol: HTTP
+      VpcId: !Ref VpcId
+      TargetGroupAttributes:
+      - Key: deregistration_delay.timeout_seconds
+        Value: !Ref DeregistrationDelay 
+      - Key: stickiness.enabled
+        Value: true
+      - Key: stickiness.type
+        Value: lb_cookie
+      Tags:
+      - Key: Project
+        Value: !Ref ProjectTagValue
+      - Key: Service
+        Value: !Ref ServiceTagValue
+      - Key: Environment
+        Value: !Ref Environment
+
+  # LoadBalancerListenerHTTPS:
+  #   Type: AWS::ElasticLoadBalancingV2::Listener
+  #   Properties:
+  #     LoadBalancerArn: !Ref LoadBalancerArn
+  #     Certificates: 
+  #     - CertificateArn: !Ref CertificateARN
+  #     Port: 443
+  #     Protocol: HTTPS
+  #     DefaultActions:
+  #       - Type: forward
+  #         TargetGroupArn: !Ref TargetGroup
+
+  ListenerRule:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      Actions: 
+      - Type: forward
+        TargetGroupArn: !Ref TargetGroup
+      Conditions: 
+      - Field: host-header
+        HostHeaderConfig:
+          Values:
+          - !Ref HostHeader
+      ListenerArn: !Ref LoadBalancerListenerArn
+      Priority: !Ref Priority
+
+  ScalableTarget:
+    Type: AWS::ApplicationAutoScaling::ScalableTarget
+    Properties:
+      MaxCapacity: !Ref MaxCapacity
+      MinCapacity: !Ref MinCapacity
+      RoleARN: 
+        Fn::Sub: 'arn:aws:iam::${AWS::AccountId}:role/aws-service-role/ecs.application-autoscaling.amazonaws.com/AWSServiceRoleForApplicationAutoScaling_ECSService'
+      ServiceNamespace: ecs
+      ScalableDimension: ecs:service:DesiredCount
+      ResourceId: !Sub service/${ClusterName}/${TaskName}-service
+    DependsOn: 
+    - Service
+
+
+  TargetTrackingScalingPolicy:
+    Type: AWS::ApplicationAutoScaling::ScalingPolicy
+    Properties:
+      PolicyName: !Sub ${TaskName}-ecs-cpu-scaling-policy
+      PolicyType: TargetTrackingScaling
+      ScalingTargetId: !Ref ScalableTarget
+      TargetTrackingScalingPolicyConfiguration:
+        TargetValue: !Ref AutoScalingTargetCPUUtilization
+        ScaleInCooldown: 180
+        ScaleOutCooldown: 240
+        PredefinedMetricSpecification:
+          PredefinedMetricType: ECSServiceAverageCPUUtilization

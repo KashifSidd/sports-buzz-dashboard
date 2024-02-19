@@ -1,0 +1,10 @@
+    <!-- <ngx-ui-loader fgsColor="#FF9D42" [hasProgressBar]="false"  [fgsSize]="0" logoUrl="../assets/new images/logo-animation.gif" [logoSize]="250" >
+</ngx-ui-loader> -->
+<router-outlet *ngIf="!isDesktopScreen"></router-outlet>
+<div class="container d-flex mt-5 flex-column justify-content-center align-items-center" *ngIf="isDesktopScreen">
+    <img width="131" height="131" src='../assets/icons/sportsbuzz Final Logo.svg'>
+    <div class="content d-flex flex-column gap-3">
+    <h1 class="mt-4 ms-2">Umm...</h1>
+    <h4 class="mt-2 ms-2">Sorry, Please use mobile device to access this application.</h4>
+    </div>
+</div>

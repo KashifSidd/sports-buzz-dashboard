@@ -1,0 +1,71 @@
+.grid-view-wrapper,
+.list-view-wrapper {
+
+    .more-wrapper {
+        padding: 1rem 2rem;
+
+        .view {
+            position: fixed;
+            right: 30px;
+            height: 35px;
+            border: 1px solid #fff;
+
+            .grid-view {
+                border-right: 1px solid #fff;
+            }
+
+            .orange-background {
+                background-color: #FF9D42;
+            }
+        }
+
+        .navigation-icons,
+        .navigation-list-icons {
+            margin-bottom: 5rem;
+
+            .home,
+            .news,
+            .spotlight,
+            .discover,
+            .useful-links {
+                h5 {
+                    letter-spacing: 3px;
+                    margin: 0 !important;
+                }
+            }
+            
+            .image-size-name {
+                border-right: 1px solid #2f2e2e;
+                width: 145px;
+                padding: 1rem 1rem 0.5rem 1rem;
+                
+
+                .image-size {
+                    height: 35px;
+                    width: 35px;
+                }
+
+                .image-name {
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 20px;
+                }
+                @media (min-width: 280px) and (max-width: 320px) 
+            { 
+                border-bottom: 1px solid #2f2e2e;
+                border-right: none !important;
+                width: 108px;
+                padding: 0px 25px;
+                width: 200px;
+            }
+            }
+        }
+
+        .navigation-list-icons {
+            .image-size-name {
+                border-right: 0 !important;
+            }
+            
+        }
+    }
+}

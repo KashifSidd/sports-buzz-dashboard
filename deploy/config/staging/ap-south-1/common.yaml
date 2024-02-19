@@ -1,0 +1,9 @@
+template_path: common.yaml
+parameters:
+  Environment: {{ environment }}
+  VpcId: {{ vpc_id }}
+  LoadBalancerSecurityGroupId: !stack_output_external sportsbuzz-user-backend-staging-ap-south-1-load-balancer::LoadBalancerSecurityGroupId
+  ServicePort: "80"
+  TaskName: {{ project_code }}
+  ProjectTagValue: {{ project }}
+  ServiceTagValue: {{ project_code }}

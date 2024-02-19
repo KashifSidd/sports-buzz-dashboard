@@ -1,0 +1,51 @@
+<div class="navigation">
+    <ul class="listWrap">
+        <li class="list" (click)="routerNavigation('news')" [ngClass]="{'selected':currentPath==='news'}">
+            <span>
+                <div class="icon">
+                    <img src="../../assets/icons/footer-news-option.svg" alt="">
+                </div>
+                <span class="text mt-2">Breaking News</span>
+            </span>
+        </li>
+
+        <li class="list" (click)="routerNavigation('icc-rankings-gender')" [ngClass]="{'selected':currentPath==='icc-rankings-gender'}">
+            <span>
+                <div class="icon">
+                    <label class="white-font" for="">ICC</label>
+                    <!-- <img src="../../assets/icons/footer-favourite-option.svg" alt=""> -->
+                </div>
+                <span class="text mt-2">Rankings</span>
+            </span>
+        </li>
+
+        <li class="list" (click)="routerNavigation('home')" [ngClass]="{'selected':currentPath==='home'}">
+            <span class="">
+                <div class="icon">
+                    <img src="../../assets/icons/footer-home-option.svg" alt="">
+                    <span class="text mt-2">Home</span>
+                </div>
+            </span>
+        </li>
+
+        <li class="list" (click)="routerNavigation('contact-us')" [ngClass]="{'selected':currentPath==='contact-us'}">
+            <span>
+                <div class="icon">
+                    <img src="../../assets/icons/contact-us-footer.svg" alt="">
+                </div>
+                <span class="text mt-2"> Contact Us</span>
+            </span>
+        </li>
+
+
+        <li class="list" (click)="routerNavigation('more')" [ngClass]="{'selected':currentPath==='more'}">
+            <span>
+                <div class="icon">
+                    <img src="../../assets/icons/footer-more-option.svg" alt="">
+                </div>
+                <span class="text mt-2">More</span>
+            </span>
+        </li>
+
+    </ul>
+</div>

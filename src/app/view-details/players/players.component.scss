@@ -1,0 +1,98 @@
+.players-wrapper{
+    .team-image-rankings{
+        .team-rankings-tabs{
+            .team{
+                font-size: 38px;
+                font-weight: 500;
+            }
+            .rankings{
+                font-size: 16px;
+                font-weight: 500;
+            }
+            .match-series{
+                padding: 0 1rem;
+                .series-name-number,.series-name-number-orange{
+                    padding: 0.5rem;
+                background-color: #464748;               
+                    height: 5rem;
+                    width: 5rem;
+                    border-radius: 15px;
+                    box-shadow: 0 10px rgb(70 71 72 / 41%);
+                
+                .series-name{
+                    font-size: 17px;
+                    font-weight: 400;
+                }
+                .number{
+                    font-size: 31px;
+                    font-weight: 500;
+                }
+            }
+            .series-name-number-orange{
+                background-color: #ff9d42 !important;
+            }                
+            }
+            .fixtures-squad-videos{
+                padding: 0 1rem;
+                .fixtures,.squad,.videos{
+                    transform: perspective(800px) rotateY(-33deg);
+                    border-radius: 5px;
+                    padding: 0.5rem;
+                    background-color: #464748;
+                    // width: 7rem;
+                    // height: 2.5rem;
+                    .heading{
+                        font-size: 20px;
+                        font-weight: 500;
+                    }
+            }
+            
+.orange-background{
+    background-color: #ff9d42;
+}
+            }
+            .playing-11{
+                padding: 0 1rem;
+                margin-top: 3.5rem;
+            margin-bottom:5rem;
+                .players-images{
+                    display: grid;
+                    grid-template-columns: 40% 40%;
+                    justify-content: space-around;
+                    gap: 3rem;
+                    .grid-item{
+                        background-color: #464748;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                        align-items: center;
+                        border-radius: 10%;
+                        padding-bottom: 1rem;
+                        height:100%;
+                        .image-margin-top{
+                            margin-top:5rem;
+                        }
+                        .image-black{
+                            width: 100%;
+                            border-top-right-radius: 10px ;
+                            border-top-left-radius: 10px ;
+                            background-color: #1F2022 !important;
+                            height:75%;
+                            .player{
+                                position: relative;
+                                bottom:14px;
+                              
+                            }
+                            .bat-ball{
+                                position: relative;
+                                bottom: 10px;
+}
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    
+}

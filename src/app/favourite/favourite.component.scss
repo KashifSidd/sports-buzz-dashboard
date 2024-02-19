@@ -1,0 +1,212 @@
+.icc-rankings-wrapper{
+    padding: 1rem;
+    .icc-rankings-gender{
+    .icc-rankings-men{
+        padding: 1rem;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #2d2e30e0 0%, #2e2c29bf 100%);
+            font-size: 20px;
+            font-weight: 500;
+            color: #fff;
+    }
+    .icc-rankings-women{
+        padding: 1rem;
+        border-radius: 10px;
+        background: linear-gradient(90deg, #2d2e30e0 0%, #2e2c29bf 100%);
+        font-size: 20px;
+        font-weight: 500;
+        color: #fff;
+    }
+}
+
+    .header {
+        font-size: 20px;
+        height: 50px;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        span {
+            padding: 0 5px 5px;
+            white-space: nowrap;
+        }
+
+        .active {
+            color: #ff9d42;
+            border-bottom: 2px solid #ff9d42;
+        }
+    }
+
+.icc-rankings {
+  .teams-events {
+      .events {
+          label {
+              color: #ff9d42;
+          }
+      }
+  }
+
+  .icc-rankings-tabs {
+      height: fit-content;
+      overflow-x: auto;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+          display: none;
+      }
+
+      .series {
+          .overall,
+          .test,
+          .odi,.t20{
+              transform: perspective(800px) rotateY(-33deg);
+              border-radius: 5px;
+              padding: 1rem;
+              background-color: #1F2022;
+              width: fit-content;
+              height: 1.5rem;
+          }
+
+          .heading {
+              font-size: 12px;
+              font-weight: 500;
+          }
+
+          .rankings-tabs {
+              font-size: 16px;
+              font-weight: 500;
+          }
+
+          .orange-background {
+              background-color: #ff9d42;
+          }
+      } 
+      table{
+        tr:first-child{
+            background-color: #1F2022;
+            font-size: 16px;
+              font-weight: 400;
+        }
+        tr{
+            font-size: 14px;
+              font-weight: 500;
+            border-bottom: 1px solid #1F2022;
+            td,th{
+                padding: 1rem;
+            }
+        }
+        
+      }    
+  }
+
+  
+
+ 
+
+  
+
+
+
+ 
+
+ 
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+// .favourite-wrapper {
+//   padding: 0 1.2rem;
+
+//   .profile {
+//     border-bottom: 1px solid #616161;
+//     padding: 1rem 0;
+//   }
+
+//   .following {
+//     padding: 1rem;
+
+//     .following-label {
+//       font-size: 16px;
+//     }
+
+//     .edit-label {
+//       font-size: 14px;
+//       color: #808797;
+//     }
+
+//     .my-players,
+//     .my-team,
+//     .my-match,
+//     .my-series {
+//       background-color: rgba(72, 73, 74, 0.7);
+//       width: fit-content;
+//       min-width: 100%;
+//       border-radius: 10px;
+
+//       .my-players-section,
+//       .my-team-section,
+//       .my-match-section,
+//       .my-series-section {
+//         border-top-right-radius: 10px;
+//         border-top-left-radius: 10px;
+
+//         table {
+//           width: 100%;
+
+//           tr:first-child {
+//             border-top-right-radius: 10px;
+//             border-top-left-radius: 10px;
+//             background-color: rgba(109, 109, 109, 0.7);
+
+//             td {
+//               padding: 0.5rem;
+//             }
+//           }
+
+//           td {
+//             border-top-right-radius: 10px;
+//             border-top-left-radius: 10px;
+//             font-size: 14px;
+//             font-weight: 400;
+//             padding: 1rem;
+//           }
+//         }
+//       }
+
+//     }
+//   }
+// }
+// .search-bar{
+//   .form-control{
+//     background-color:#1F2022;
+//     width:358px;
+//     height:31px;
+//   }
+//   .search-icon{
+//     right: 25px;
+//     top: 122px;
+//   }
+  
+// }
+
+// .browse-team-wrapper{
+//   padding: 1rem;
+//   .team-logo{
+    
+//   .team-name{
+//     width: 72px;
+//     height: 21px;
+//   }
+// }
+// }

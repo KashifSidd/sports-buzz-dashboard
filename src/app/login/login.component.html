@@ -1,0 +1,27 @@
+<div class="login-wrapper w-100">
+    <div class="welcome">
+        <h1>WELCOME TO</h1>
+        <img src="../../assets/icons/sportsbuzz Final Logo.svg" [routerLink]="'/home'" alt="">
+    </div>
+    <div class="login-form align-flex-row w-100 mt-4">
+        <form class="form w-100 d-flex gap-4 flex-column position-relative" [formGroup]="registerForm" *ngIf="registrationForm">
+            <input type="text" placeholder="Name" name="name" formControlName="name">
+            <input type="text" placeholder="Phone Number" name="phone" formControlName="phone">
+            <input type="email" placeholder="E-mail" name="email" formControlName="email">
+            <input type="password" placeholder="Password" name="password" formControlName="password">
+        </form>
+        <form class="form w-100 d-flex gap-4 flex-column position-relative" [formGroup]="loginForm" *ngIf="signInForm">
+            <input type="text" placeholder="E-mail/Phone Number" name="emailOrPhone" formControlName="email">
+            <input type="password" placeholder="Password" name="password" formControlName="password">
+        </form>
+        <div class="action-btn d-flex justify-content-center position-absolute gap-3 flex-column align-items-centre">
+            <button class="btn login-form-submit-btn mt-3" (click)="login()" *ngIf="signInForm">Sign
+                In</button>
+            <button class="btn login-form-submit-btn mt-3" (click)="register()" *ngIf="registrationForm">Register Now</button>
+            <label class="text-label justify-content-center gap-2 d-flex" *ngIf="registrationForm">Already have an
+                account ? <a class="orange-font" (click)="showSignInForm()"> Sign in</a></label>
+            <label class="text-label justify-content-center gap-2 d-flex" *ngIf="signInForm">Don’t have an account ? <a
+                    class="orange-font" (click)="showRegistrationForm()">Register now</a></label>
+        </div>
+    </div>
+</div>

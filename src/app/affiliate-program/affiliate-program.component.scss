@@ -1,0 +1,212 @@
+.affiliate-program-header {
+    padding: 20px;
+    background-image: url('../../assets/Images/affiliate-program.svg');
+    height: 23vh;
+    font-size: 20px;
+    
+    .affiliate-program-join-btn {
+        border: none;
+        border-radius: 40px;
+        color: #FF7814;
+        width: 120px;
+    }
+    @media screen and (min-device-width: 320px) and (max-device-width: 810px) {
+        width: 100%;
+
+    }
+    @media screen and (min-device-width: 270px) and (max-device-width: 319px) {
+        width: 100%;
+        font-size: 18px !important;
+
+    }
+
+}
+
+.affiliate-program-discription {
+    p {
+        color: #FFFFFF;
+        font-size: 14px;
+        margin: 1rem 2rem;
+        text-align: justify;
+        font-weight: 400;
+    }
+}
+
+.affiliate-program-submenu-heading {
+    h1 {
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 18px;
+        margin: 1.5rem 1.5rem;
+    }
+}
+
+.affiliate-program-submenu {
+    .submenu-numbering-div {
+        .num-box {
+            color: #000;
+            background-color: #FF9D42CC;
+            border-radius: 6px;
+            box-shadow: 5px 10px 5px 5px #FF9D4226;
+            font-weight: bold;
+            text-align: center;
+            margin: 0rem 0rem 4rem 0rem;
+
+            @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                width: 4.5rem;
+                // height: 4.5rem;
+                font-size: 3rem;
+                margin-left: 2rem;
+            }
+            @media screen and (min-device-width: 270px) and (max-device-width: 319px) {
+                width: 4.5rem;
+                // height: 4.5rem;
+                font-size: 3rem;
+                margin-left: 2rem;
+                margin-bottom: 8.5rem;
+            }
+        }
+    }
+
+    .submenu-text-div {
+        @media screen and (min-device-width: 280px) and (max-device-width: 810px) {}
+
+        .text-box {
+            // height: 6rem;
+            margin: 0rem 0rem 4rem 0rem;
+
+            @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                margin: 0rem 0rem 0rem 0rem;
+                padding: 0rem 1rem;
+            }
+
+            h1 {
+                color: #FF9D42;
+
+                @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                    font-size: 16px;
+                    margin: 0;
+                }
+            }
+
+            p {
+                color: #FFFFFF;
+
+                @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                    font-size: 12px;
+                    margin: 0;
+                }
+            }
+        }
+
+        .box2 {
+            @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                margin: 3rem 0rem 0rem 0rem;
+            }
+        }
+
+        .box3 {
+            @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                margin: 2rem 0rem 0rem 0rem;
+            }
+        }
+    }
+}
+
+.affiliate-program-sub-section {
+    background-color: rgba(72, 73, 74, 0.7);
+    margin: 0 8rem 0rem 8rem;
+    border-radius: 30px;
+
+    @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+        margin: 0 0rem 0rem 0rem;
+        border-radius: 0px;
+    }
+
+    .affiliate-program-sub-section-title {
+        color: #FF9D42;
+        text-align: center;
+        margin: 2rem 0rem;
+
+        @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+            font-size: 18px;
+            margin: 1rem 0rem;
+        }
+    }
+
+    .affiliate-program-sub-section-menu {
+        .contener-box {
+            padding: 20px;
+
+            img {
+                width: 10rem;
+                // height: 10rem;
+                margin: 0rem 1rem 0rem 1rem;
+
+                @media screen and (min-device-width: 320px) and (max-device-width: 810px) {
+                    width: 5rem;
+                    // height: 5rem;
+                    margin: 0rem 0rem 0rem 0rem;
+                }
+                @media screen and (min-device-width: 270px) and (max-device-width: 319px) {
+                    width: 3rem;
+                    // height: 5rem;
+                    margin: 0rem 0rem 0rem 0rem;
+                }
+            }
+
+            p {
+                font-size: 1rem;
+                color: #FFFFFF;
+                margin: 1rem 1rem 0rem 1rem;
+                text-align: center;
+
+                @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+                    font-size: 12px;
+                    margin: 0.5rem 0rem 0rem -0.5rem;
+                    padding: 0rem 0rem 0rem 0rem;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+
+.affiliate-program-join-section {
+    background-color: rgba(72, 73, 74, 0.7);
+    margin: 1rem 10rem 1rem 24rem;
+    border-radius: 16px;
+
+    @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+        margin: 1rem 1.5rem;
+        padding-bottom: 5px;
+    }
+
+    label {
+        padding: 15px 15px 0 15px;
+        font-size: 20px;
+    }
+
+    p {
+        color: #FFFFFF;
+        text-align: center;
+
+        @media screen and (min-device-width: 280px) and (max-device-width: 810px) {
+            font-size: 14px;
+            text-align: center;
+            padding: 5px 15px;
+        }
+    }
+}
+
+.join-right-now {
+    position: relative;
+    left: 130px;
+    bottom: 2rem;
+    @media screen and (min-device-width: 270px) and (max-device-width: 319px) {
+        
+        left: 72px;
+    }
+
+
+}

@@ -1,0 +1,62 @@
+<app-header></app-header>
+<div class="players-wrapper">
+    <section class="team-image-rankings position-relative w-100">
+        <div class="d-flex justify-content-center">
+            <img src='{{"assets/CricketTeamLogo/" + currentTeamName + ".png"}}' height="170"
+            onerror="this.onerror=null;this.src='assets/Images/default-team-flag.png'">
+        </div>
+        <div class="team-rankings-tabs d-flex flex-column gap-5 w-100 justify-content-center align-items-center">
+           <!-- <img class="blur-background w-100 " src="assets/Cricket Team Logo/India.png"> -->
+           <div class="w-100 mt-3">
+            <span class="d-flex flex-column w-100 justify-content-center align-items-center">
+                <label class="team">{{teamType === 'homeTeam' ? routeQueryParams.homeTeamName : routeQueryParams.awayTeamName}}</label>
+                <!-- <label class="rankings">RANKINGS</label> -->
+            </span>
+            <!-- <span class="match-series d-flex align-items-center justify-content-between gap-2 mt-5">
+                <div class="series-name-number justify-content-center align-items-center d-flex flex-column">
+                    <label class="series-name">ODI</label>
+                    <label class="number">3</label>
+                </div>
+                <div class="series-name-number-orange justify-content-center align-items-center d-flex flex-column">
+                    <label class="series-name">TEST</label>
+                    <label class="number">2</label>
+                </div>
+                <div class="series-name-number justify-content-center align-items-center d-flex flex-column">
+                    <label class="series-name">T20</label>
+                    <label class="number">3</label>
+                </div>
+            </span> -->
+
+            <span class="fixtures-squad-videos d-flex align-items-center justify-content-evenly gap-2 mt-5">
+                <div class="fixtures justify-content-center align-items-center d-flex" [ngClass]="{'orange-background': teamType === 'homeTeam'}"
+                    (click)="teamType = 'homeTeam'; currentTeamName = routeQueryParams.homeTeamName">
+                    <label class="heading">{{routeQueryParams.homeTeamName}}</label>
+                </div>
+                <div class="squad justify-content-center align-items-center d-flex"  [ngClass]="{'orange-background': teamType === 'awayTeam'}"
+                    (click)="teamType = 'awayTeam'; currentTeamName = routeQueryParams.awayTeamName">
+                    <label class="heading">{{routeQueryParams.awayTeamName}}</label>
+                </div>
+            </span>
+            <section class="playing-11">
+                <span class="d-flex justify-content-center w-100 ">
+                    <h1 class="orange-font">PLAYING XI</h1>
+                </span>
+                <span class="players-images align-items-center w-100 mt-5">
+                    <div class="grid-item"  *ngFor="let player of teamSquads[teamType]?.playingXI">
+                        <span class="image-black d-flex align-items-start justify-content-center">
+                        <img width="108" height="108" src="../../../assets/Images/default-player-profile.png" class="player ms-3">
+                        <img src='{{"assets/Images/" + player.playertype + ".svg"}}' class="bat-ball">
+                        </span>
+                        <h6 class="orange-font text-center mt-3">{{player.playerName}}</h6>
+                   <!-- <span class="name d-flex justify-content-center align-items-center">
+                    <h6>{{player.playerName}}</h6>
+                   </span> -->
+                    </div>
+                </span>
+
+            </section>
+           </div> 
+        </div>            
+    </section>
+</div>
+<!-- <app-footer></app-footer> -->

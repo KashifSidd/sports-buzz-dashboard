@@ -1,0 +1,1349 @@
+<app-header></app-header>
+<!-- <div *ngIf="matchNotStarted" class="match-not-started">
+    <img src="assets/new images/match-yet.jpg" alt="" (click)="navigateToHomePage()">
+</div> -->
+<div class="view-details-wrapper">
+    <section class="view-details-wrapper__favourite-team w-100 justify-content-between d-flex align-items-center">
+        <span class="view-details-wrapper__favourite-team__left-side d-flex gap-2 align-items-center">
+            <!-- <img src="../../assets/Images/India-flag.svg" alt="Icon">
+            <label for="">IND</label> -->
+            <!-- <img class="ms-3" src="../../assets/icons/Wicket.svg" alt=""> -->
+            <!-- <img class="ms-5" src="../../assets/icons/4.svg" alt="">-->
+            <!-- <img class="ms-5" src="../../assets/icons/6.svg" alt=""> -->
+            <!-- <img class="ms-3" src="../../assets/icons/Over.svg" alt="">             -->
+            <img width="50" height="50" src='{{matchDetails.homeTeamUrl}}' alt="Icon">
+            <div class="d-flex flex-column">
+                <label class="white-font" for="">{{matchDetails.homeTeamCode}}</label>
+                <label class="orange-font">{{matchDetails.homeDisplayScore ? matchDetails.homeDisplayScore : '-- / --'}}
+                </label>
+                <span>{{matchDetails.homeDisplayOver}}</span>
+            </div>
+        </span>
+        <img src="../../assets/icons/view-details-header-Line.svg" height="40" alt="">
+        <span
+            class="view-details-wrapper__favourite-team__right-side justify-content-end d-flex gap-2 align-items-center">
+            <div class="d-flex flex-column">
+                <label class="white-font" for="">{{matchDetails.awayTeamCode}}</label>
+                <label class="orange-font">{{matchDetails.awayDisplayScore ? matchDetails.awayDisplayScore : '-- /
+                    --'}}</label>
+                <span>{{matchDetails.awayDisplayOver}}</span>
+            </div>
+            <img width="50" height="50" src='{{matchDetails.awayTeamUrl}}' alt="Icon">
+        </span>
+    </section>
+    <section class="view-details-wrapper__match-details mt-4">
+        <div class="header mt-4">
+            <span class="px-2" [ngClass]="{'active': currentTab === i}" *ngFor="let tab of tabList;let i=index"
+                (click)="changeTab(i)">
+                {{tab}}
+            </span>
+        </div>
+        <mat-tab-group [selectedIndex]="currentTab">
+            <mat-tab label="Info">
+                <label class="orange-font align-flex-row mt-3">{{matchDetails.displayMsg}}</label>
+                <mat-expansion-panel class="team-players mt-4" [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Playing XI</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="home-team d-flex justify-content-between align-items-center mt-3">
+                        <label for="">{{matchDetails.homeTeamName}}</label>
+                        <img src="../../assets/icons/arrow-icon.svg" (click)="navigateToPlayers('homeTeam')"
+                            alt="arrow">
+                    </div>
+                    <div class="away-team d-flex justify-content-between align-items-center mt-3">
+                        <label for="">{{matchDetails.awayTeamName}}</label>
+                        <img src="../../assets/icons/arrow-icon.svg" (click)="navigateToPlayers('awayTeam')"
+                            alt="arrow">
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="match-details mt-4" [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Match Details</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="mt-3">
+                        <span>
+                            <label class="heading" for="">Series</label>
+                            <p class="content">{{matchDetails.seasonName}}</p>
+                        </span>
+                        <span>
+                            <label class="heading" for="">Date & Time</label>
+                            <p class="content">{{matchDetails.matchScheduledDate | date: 'medium'}}</p>
+                        </span>
+
+                        <span>
+                            <label class="heading" for="">Match</label>
+                            <p class="content text-uppercase">{{matchDetails.tournamentType}}</p>
+                        </span>
+                        <hr>
+                        <span>
+                            <label class="heading" for="">Umpires</label>
+                            <p class="content">{{matchDetails.firstUmpireName}}, {{matchDetails.secondUmpireName}}</p>
+                        </span>
+                        <span>
+                            <label class="heading" for="">Third Umpires</label>
+                            <p class="content">{{matchDetails.thirdUmpireName}}</p>
+                        </span>
+                        <!-- <span>
+                            <label class="heading" for="">Referee</label>
+                            <p class="content">----</p>
+                        </span> -->
+                        <span>
+                            <label class="heading" for="">Venue</label>
+                            <p class="content">{{matchDetails.venueName}}, {{matchDetails.venueCityName}}</p>
+                        </span>
+                    </div>
+                </mat-expansion-panel>
+                <mat-expansion-panel class="pitch-report mt-4" [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Pitch Report</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="d-flex justify-content-around mt-3">
+                        <section class="align-flex-row gap-3">
+                            <img src="../../assets/Images/Pitch-report.svg" alt="">
+                        </section>
+                    </div>
+                    <span class="white-font">Pitch Condition: {{matchDetails.pitchCondition}}</span>
+                    <!-- <label for="">The surface at the Rose Bowl is a batting-friendly wicket and is expected to boost the
+                        batters once again here. Pacers might get some help towards the latter half of the match while
+                        spinners will play a good role in the middle phase. The pitch is expected to behave similarly
+                        for this game as well.</label> -->
+                </mat-expansion-panel>
+                <mat-expansion-panel class="weather-condition mt-4" [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Weather Condition</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="condition row">
+                        <section class="temp col-6 mt-3">
+                            <span>
+                                <img src="../../assets/icons/cloudy-icon.svg" alt="">
+                                <img src="../../assets/icons/temp-icon.svg" alt="">
+                            </span>
+                            <h5 class="mt-2">{{matchDetails.weatherTemperature?matchDetails.weatherTemperature:'---'}}
+                            </h5>
+                            <p>{{matchDetails.weatherText?matchDetails.weatherText:'---'}}</p>
+                        </section>
+                        <section class="windspeed-humidity col-6 mt-3">
+                            <div class="d-flex gap-2">
+                                <img src="../../assets/icons/windspeed-icon.svg" alt="">
+                                <span class="d-flex flex-column">
+                                    <label for=""> Windspeed </label>
+                                    <h5>{{matchDetails.weatherWindSpeed?matchDetails.weatherWindSpeed:'---'}}</h5>
+                                </span>
+                            </div>
+                            <div class="d-flex gap-2 mt-1">
+                                <img src="../../assets/icons/humidity-icon.svg" alt="">
+                                <span class="d-flex flex-column ms-2">
+                                    <label for=""> Humidity</label>
+                                    <h5>{{matchDetails.weatherHumidity?matchDetails.weatherHumidity:'---'}}</h5>
+                                </span>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- <div class="d-flex gap-3 mt-3">
+                        <span>
+                            <h5 class="m-0">14</h5>
+                            <label for="">Jun</label>
+                        </span>
+                        <span>
+                            <p>Dr. Y. S. Rajasekhara Reddy ACA–VDCA Cricket Stadium, Visakhapatnam</p>
+                        </span>
+                    </div> -->
+                </mat-expansion-panel>
+
+                <!-- <mat-expansion-panel class="venue-scoring-pattern mt-4" [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Venue Scoring Pattern</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="row mt-3">
+                        <section class="col-6">
+                            <span>
+                                <label class="heading">1st Inns Avg</label>
+                                <h4>---</h4>
+                            </span>
+                            <span class="mt-5 d-flex flex-column">
+                                <label class="heading">Highest Total</label>
+                                <span class="mt-1 align-flex-row gap-2">
+                                    <h4>98/10</h4>
+                                    <label class="heading">20 Ov ---</label>
+                                </span>
+                                <label class="heading mt-1">by SL vs IND ----</label>
+                            </span>
+                        </section>
+                        <section class="col-6">
+                            <span>
+                                <label class="heading">1st Inns Avg</label>
+                                <h4>---</h4>
+                            </span>
+                            <span class="mt-5 d-flex flex-column">
+                                <label class="heading">Highest Total</label>
+                                <span class="mt-1 align-flex-row gap-2">
+                                    <h4>98/10</h4>
+                                    <label class="heading">20 Ov ---</label>
+                                </span>
+                                <label class="heading mt-1">by SL vs IND ---</label>
+                            </span>
+                        </section>
+                        <div class="matches-heading-wrapper">
+                            <div class="matches-heading align-flex-row">
+                                <section class="matches"> Matches</section>
+                            </div>
+                        </div>
+                        <div class="row mt-3 justify-content-center">
+                            <section class="batting-first col-6 align-flex-column">
+                                <label class="heading">Batting First</label>
+                                <span class="align-flex-row gap-3 border-right">
+                                    <circle-progress [percent]="100" [radius]="20" [outerStrokeWidth]="5"
+                                        [innerStrokeWidth]="5" [space]="-5" [outerStrokeColor]="'#FF9D42'"
+                                        [innerStrokeColor]="'#141414'" [showSubtitle]="false" [animation]="true"
+                                        [animationDuration]="300" [startFromZero]="false" [responsive]="true"
+                                        [titleFontSize]="'10'"></circle-progress>
+                                    <label class="heading">2</label>
+                                </span>
+                            </section>
+                            <section class="bowling-first col-6 align-flex-column">
+                                <label class="heading">Bowling First</label>
+                                <span class="gap-3 align-flex-row">
+                                    <label class="heading">0</label>
+                                    <circle-progress [radius]="20" [outerStrokeWidth]="5" [innerStrokeWidth]="5"
+                                        [space]="-5" [outerStrokeColor]="'#FF9D42'" [innerStrokeColor]="'#141414'"
+                                        [showSubtitle]="false" [animation]="true" [animationDuration]="300"
+                                        [startFromZero]="false" [responsive]="true" [titleFontSize]="'10'">
+                                    </circle-progress>
+                                </span>
+                            </section>
+                        </div>
+                    </div>
+                </mat-expansion-panel> -->
+                <!-- <mat-expansion-panel class="head-to-head mt-4">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>Head to Head</mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="d-flex justify-content-around mt-3">
+                        <section class="d-flex align-items-center gap-3">
+                            <label class="heading" for="">India</label>
+                            <div class="match-counts d-flex justify-content-center align-items-center">
+                                <span class="">5</span>
+                            </div>
+                        </section>
+                        <img src="../../assets/icons/thunder-icon.svg" alt="">
+                        <section class="d-flex align-items-center gap-3">
+                            <div class="match-counts d-flex justify-content-center align-items-center">
+                                <span class="">3</span>
+                            </div>
+                            <label class="heading" for="">South Africa</label>
+                        </section>
+                    </div>
+                    <hr>
+                    <div>
+                        <span>
+                            <label class="heading" for="">Umpires</label>
+                            <p class="content">Nitin Menon, Virendra Sharma</p>
+                        </span>
+                        <span>
+                            <label class="heading" for="">Third Umpire
+                            </label>
+                            <p class="content">Anil Chaudhary
+                            </p>
+                        </span>
+                        <span>
+                            <label class="heading" for="">Referee</label>
+                            <p class="content">Javagal Srinath
+                            </p>
+                        </span>
+                    </div>
+                </mat-expansion-panel> -->
+                <!-- <div class="mt-4">
+                    <h3>Top Player in the series</h3>
+                    <label class="most-runs-label mb-4 mt-4" for="">Most runs</label>
+                    <div class="mt-5">
+                        <section class="row d-flex justify-content-end align-items-center">
+                            <img src="../../assets/Images/Srilanka 2.svg" alt="" class="col-3 me-2">
+                            <span class=" d-flex flex-column col-4">
+                                <label class="rank">Rank 1</label>
+                                <label class="player-name" for="">Kausal Mendis</label>
+                            </span>
+                        </section>
+                        <section class="player position-relative align-flex-row mt-3">
+                            <span class="statistics d-flex ms-5 justify-content-end">
+                                <table class="statistics-table">
+                                    <tr>
+                                        <td class="heading">ODI</td>
+                                        <td class="content">Mode</td>
+                                        <td class="heading">550</td>
+                                        <td class="content">Runs</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <img class="most-wkts-player-image" src="../../assets/Images/Kusal-Mendis.svg" alt="">
+                        </section>
+
+                    </div>
+                    <div class="">
+                        <table class="most-run-table">
+                            <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Runs</th>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Aden Markaram</td>
+                                <td>120</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Pathum Nissanka</td>
+                                <td>120</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Temba Bavuma</td>
+                                <td>90</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <hr>
+                    <label class="most-wkts-label mb-4 mt-4" for="">Most Wickets</label>
+                    <div class="mt-5">
+                        <section class="row d-flex justify-content-end align-items-center">
+                            <img src="../../assets/Images/Srilanka 2.svg" alt="" class="col-3 me-2">
+                            <span class=" d-flex flex-column col-4">
+                                <label class="rank">Rank 1</label>
+                                <label class="player-name" for="">Tabraiz Shamsi</label>
+                            </span>
+                        </section>
+                        <section class="player position-relative align-flex-row mt-3">
+                            <span class="statistics d-flex ms-5 justify-content-end">
+                                <table class="statistics-table">
+                                    <tr>
+                                        <td class="heading">ODI</td>
+                                        <td class="content">Mode</td>
+                                        <td class="heading">12</td>
+                                        <td class="content">Wkts</td>
+                                    </tr>
+                                </table>
+                            </span>
+                            <img class="most-wkts-player-image" src="../../assets/Images/shamsi.svg" alt="">
+                        </section>
+
+                    </div>
+                    <div class="">
+                        <table class="most-wkts-table">
+                            <tr>
+                                <th>No.</th>
+                                <th>Name</th>
+                                <th>Wickets</th>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>Aden Markaram</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>Pathum Nissanka</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>Temba Bavuma</td>
+                                <td>9</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div> -->
+
+            </mat-tab>
+            <mat-tab label="Commentary">
+                <div class="commentary-wrapper">
+                    <!-- <section class="players mt-3">
+                        <div class="batsmen">
+                            <table>
+                                <tr>
+                                    <th>
+                                        Batsmen
+                                    </th>
+                                    <th colspan=3>
+                                        R (B)
+                                    </th>
+                                    <th>
+                                        4s
+                                    </th>
+                                    <th>
+                                        6s
+                                    </th>
+                                    <th>
+                                        SR
+                                    </th>
+                                </tr>
+                                <tr *ngFor="let batting of inningWiseDetails[latestInning]?.battingScoreCard">
+                                    <td *ngIf="batting.dismissalMsg===''">
+                                       <label>{{batting.batterName}}</label> 
+                                    </td>
+                                    <td colspan=3 *ngIf="batting.dismissalMsg===''">
+                                        <label>{{batting.runs}}({{batting.balls}})</label>                                       
+                                    </td>
+                                    <td *ngIf="batting.dismissalMsg===''">
+                                       
+                                        <label>{{batting.fours}}</label>
+                                    </td>
+                                    <td *ngIf="batting.dismissalMsg===''">
+                                       
+                                        <label>{{batting.sixes}}</label>
+                                    </td>
+                                    <td *ngIf="batting.dismissalMsg===''">
+                                        <label>{{batting.strikeRate}}</label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    
+                    </section>
+                    <section class="players mt-3">
+                        <div class="bowler">
+                            <table>
+                                <tr>
+                                    <th>
+                                        Bowler:
+                                    </th>
+                                    <th colspan=2>
+                                        W-R
+                                    </th>
+                                    <th>
+                                        Overs
+                                    </th>
+                                    <th>
+                                        Econ
+                                    </th>
+                                </tr>
+                                <tr *ngFor="let bowling of inningWiseDetails[latestInning]?.bowlingScoreCard">
+                                    <td >
+                                        <label>{{bowling.bowlerName}}</label>
+                                    </td >
+                                    <td colspan=2>
+                                        <label>{{bowling.wickets}}-{{bowling.runs}}</label>
+                                    </td>
+                                    <td>
+                                        <label>{{bowling.overs}}</label>
+                                    </td>
+                                    <td>
+                                        <label>{{bowling.econ}}</label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section> -->
+                    <section class="match-commentary mt-3">
+                        <!-- <span class="team-name d-flex justify-content-around gap-2 my-3" [matMenuTriggerFor]="menu">
+                            <label>{{inningWiseDetails[commentaryCurrentInning]?.headingDisplay}}</label>
+                            <img src="../../assets/icons/right-arrow.svg">
+                        </span> -->
+                        <span class="d-flex gap-2">
+                            <button class="commentary-button my-3"
+                                [ngClass]="{'active':tab.value['inningNumber'] ===  commentaryCurrentInning}"
+                                *ngFor="let tab of inningWiseDetails | keyvalue"
+                                (click)="changeCurrentCommentaryInning(tab.value['inningNumber'])">{{tab.value['headingDisplay']}}</button>
+                        </span>
+                        <!-- <mat-menu #menu="matMenu">
+                            <div mat-menu-item  *ngFor="let tab of inningWiseDetails | keyvalue: originalOrder"
+                                (click)="changeCurrentCommentaryInning(tab.value['inningNumber'])"> {{tab.value['headingDisplay']}}</div>
+                        </mat-menu> -->
+                        <div class="teams-events d-flex justify-content-between align-items-center">
+                            <!-- <div class="d-flex justify-content-center">
+                                <label class="heading">Sponsored by &nbsp;&nbsp;<img
+                                        src="../../assets/Images/laser-book.gif" width="100" alt=""></label>
+                            </div> -->
+                            <span class="events align-flex-row gap-2" (click)="openKeyEvents()"
+                                *ngIf="!openedKeyEvents">
+                                <label for="">See Key Events</label>
+                                <img src="../../assets/Images/right-arrow.svg">
+                            </span>
+                            <span class="orange-font" (click)="closeKeyEvents()" *ngIf="openedKeyEvents">Clear
+                                All</span>
+                        </div>
+
+                        <div class="scroll-key-events" *ngIf="openedKeyEvents">
+                            <span class="key-events d-flex align-items-center justify-content-between mt-3">
+                                <div class="highlights align-flex-row"
+                                    [ngClass]="{'orange-background': filterBy === 'highlights'}"
+                                    (click)="filterByKeyEvents('highlights')">
+                                    <label class="heading">Highlights</label>
+                                </div>
+                                <div class="overs align-flex-row"
+                                    [ngClass]="{'orange-background': filterBy === 'overs'}"
+                                    (click)="filterByKeyEvents('overs')">
+                                    <label class="heading">Overs</label>
+                                </div>
+                                <div class="w align-flex-row" [ngClass]="{'red-background': filterBy === 'wickets'}"
+                                    (click)="filterByKeyEvents('wickets')">
+                                    <label class="heading">W</label>
+                                </div>
+                                <div class="six align-flex-row" [ngClass]="{'green-background': filterBy === 'sixes'}"
+                                    (click)="filterByKeyEvents('sixes')">
+                                    <label class="heading">6s</label>
+                                </div>
+                                <div class="four align-flex-row" [ngClass]="{'blue-background': filterBy === 'fours'}"
+                                    (click)="filterByKeyEvents('fours')">
+                                    <label class="heading">4s</label>
+                                </div>
+                                <!-- <div class="achievements align-flex-row"
+                                    [ngClass]="{'orange-background': filterBy === 'achievements'}" (click)="filterByKeyEvents('achievements')">
+                                    <label class="heading">Achievements</label>
+                                </div> -->
+                            </span>
+                        </div>
+
+                        <div class="team-commentary" *ngIf="!filterBy">
+                            <!-- <mat-icon class="clickable" mat-icon-button [matMenuTriggerFor]="menu">more_vert</mat-icon> -->
+                            <span *ngFor="let overDet of inningWiseDetails[commentaryCurrentInning]?.oversDetails">
+                                <!-- <section class="over-player-team-score mt-4 d-flex">
+                                    <span class="over-player d-flex flex-column justify-content-around">
+                                        <section class="over">
+                                            <label for="" class="ms-2 mt-1 mb-1">OVER: {{overDet.overNumber}}</label>
+                                        </section>
+                                        <section class="player">
+                                            <table class="w-100 ms-2 me-4 mt-1 mb-2">
+                                                <tr>
+                                                    <td colspan=2>
+                                                        {{overDet.battingStrikerName}}
+                                                    </td>
+                                                    <td>
+                                                        {{overDet.battingStrikerScoreDisplay}}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan=2>
+                                                        {{overDet.battingNonStrikerName}}
+                                                    </td>
+                                                    <td>
+                                                        {{overDet.battingNonStrikerScoreDisplay}}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </section>
+                                    </span>
+                                    <span class="team-score-player d-flex flex-column justify-content-around">
+                                        <section class="team-score">
+                                            <label for="" class="ms-1 me-2 mt-1 mb-1">
+                                                {{inningWiseDetails[commentaryCurrentInning]?.battingTeamCode}}:
+                                                {{overDet.displayScore}}
+                                            </label>
+                                        </section>
+                                        <section class="d-flex gap-2">
+                                            <div class="d-flex flex-column ball-by-ball">
+                                                <label for="" class="ms-2 mt-2">Scored: {{overDet.runsThisOver}}</label>
+                                                <span class="d-flex gap-1 ms-2 mb-2">
+                                                    <label for=""
+                                                        *ngFor="let ovHighDet of overDet.overHighlightsDetails">{{ovHighDet.scoreDisplay}}</label>
+                                                </span>
+                                            </div>
+                                            <div class="d-flex flex-column gap-1">
+                                                <label for="" class=" me-1 mt-2">{{overDet.bowlerName}}</label>
+                                                <label for="" class=" me-1 mb-2">40-6-100-1</label>
+                                            </div>
+                                        </section>
+                                    </span>
+
+                                </section> -->
+
+                                <section class="score-detail-table mt-4">
+                                    <div >
+                                       <span class="w-75 d-flex justify-content-between">
+                                            <span for="">OVER: <b>{{overDet.overNumber}}</b></span>
+                                            <span for="">
+                                                {{inningWiseDetails[commentaryCurrentInning]?.battingTeamCode}}:
+                                                <b>{{overDet.displayScore}}</b>
+                                            </span>
+                                       </span>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <span class="w-75 d-flex justify-content-between">
+                                            <span>{{overDet.battingStrikerName}}</span>
+                                            <span>{{overDet.battingStrikerScoreDisplay}}</span>
+                                        </span>
+                                        <span class="w-75 d-flex justify-content-between">
+                                            <span>{{overDet.battingNonStrikerName}}</span>
+                                            <span>{{overDet.battingNonStrikerScoreDisplay}}</span>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span class="w-75 d-flex justify-content-between">
+                                            <span>{{overDet.bowlerName}}</span>
+                                            <!-- <span>40-6-100-1</span> -->
+                                        </span>
+                                    </div>
+                                    <div class="d-flex flex-column ball-by-ball">
+                                        <span class="d-flex gap-1 ms-2 mb-2 orange-font">
+                                            <label for=""
+                                                *ngFor="let ovHighDet of overDet.overHighlightsDetails">{{ovHighDet.scoreDisplay}}</label>
+                                            <label *ngIf="overDet.runsThisOver">({{overDet.runsThisOver}} runs)</label>
+                                        </span>
+                                    </div>
+                                </section>
+
+
+                                <section class="match-over-commentary w-100 mt-4 gap-3">
+                                    <div class="grid-item" *ngFor="let commDet of overDet.commentaryDetails">
+                                        <span class="orange-font"><b>{{commDet.ballNo}} &nbsp;&nbsp;:
+                                                &nbsp;&nbsp;{{commDet.ballEvent}},</b></span> {{commDet.commentary}}
+                                    </div>
+
+                                </section>
+                            </span>
+
+                        </div>
+
+                        <!--Highlights Section  -->
+                        <div class="w-wrapper" *ngIf="filterBy === 'highlights'">
+                            <!-- <section
+                            class="player-image-name-details d-flex align-items-center justify-content-between mt-4">
+                            <img src="../../assets/Images/Johnm Campbell.svg" class="players-image position-relative">
+                            <span class="d-flex position-absolute gap-2">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                            </span>
+                            <span class="player-name-heading-content d-flex justify-content-evenly align-items-center">
+                                <span class="player-name-heading d-flex flex-column gap-1">
+                                    <label class="player-name">Johnm Campbell</label>
+                                    <label class="heading">3rd Fifty in TEST </label>
+                                </span>
+                                <label class="content">21.6</label>
+                            </span>
+                        </section> -->
+
+                            <section class="w-name-details mt-3"
+                                *ngFor="let highlight of inningWiseDetails[commentaryCurrentInning]?.allHighlights">
+                                <div class="d-flex gap-3">
+                                    <label>{{highlight.ballNumber}}</label>
+                                    <!-- <span class="align-flex-row w-75"><label class="">b K
+                                        Roach</label></span> -->
+                                </div>
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src='{{"assets/Images/" + highlight.displayScore + ".svg"}}'>
+                                    <label>{{highlight.commentary}}</label>
+                                </div>
+                            </section>
+
+                            <!-- for no data available -->
+                            <section class="w-name-details mt-3" *ngIf="inningWiseDetails[commentaryCurrentInning]?.allHighlights.length === 0">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <label>No Records Available</label>
+                                </div>
+                            </section>
+                        </div>
+                        <!-- Over Section -->
+                        <div  *ngIf="filterBy === 'overs'">
+                            <section class="this-over d-flex justify-content-between align-items-center gap-1"
+                                *ngFor="let overDet of inningWiseDetails[commentaryCurrentInning]?.oversDetails">
+                                <div class="d-flex align-items-center gap-2 flex-wrap">
+                                    <label>ov {{overDet.overNumber}}:</label>
+                                    <span class="run-ball others-background" [ngClass]="{'red-background': ovHighDet.isOut, 'green-background': ovHighDet.isBoundary && ovHighDet.scoreDisplay === 6,
+                                             'blue-background':ovHighDet.isBoundary && ovHighDet.scoreDisplay === 4}"
+                                        *ngFor="let ovHighDet of overDet.overHighlightsDetails">
+                                        <label>{{ovHighDet.scoreDisplay}}</label>
+                                    </span>
+                                </div>
+                                <label>
+                                    {{overDet.runsThisOver}}
+                                </label>
+                            </section>
+
+                            <!-- for no data avialble -->
+                            <div class="w-wrapper">
+                                <section class="w-name-details mt-3" *ngIf="inningWiseDetails[commentaryCurrentInning]?.oversDetails.length === 0">
+                                    <div class="d-flex gap-3 align-items-center">
+                                        <label>No Records Available</label>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+
+                        <!-- W Section -->
+                        <div class="w-wrapper" *ngIf="filterBy === 'wickets'">
+                            <!-- <section class="player-image-name-details align-flex-row mt-3">
+                                <img src="../../assets/Images/Johnm Campbell.svg"
+                                    class="players-image position-relative">
+                                <span class="d-flex position-absolute gap-2">
+                                    <img src="../../assets/Images/Vector.svg">
+                                    <img src="../../assets/Images/Vector.svg">
+                                    <img src="../../assets/Images/Vector.svg">
+                                    <img src="../../assets/Images/Vector.svg">
+                                </span>
+                                <span class="player-name-heading-content d-flex flex-column justify-content-end">
+                                    <label class="player-name">Johnm Campbell</label>
+                                    <span class="d-flex flex-column ms-2">
+                                        <label class="heading">b K Roach </label>
+                                        <label class="content">1(24)</label>
+                                    </span>
+                                </span>
+                                <span class="runs">
+                                    <label class="heading">
+                                        4s/6s
+                                    </label>
+                                    <label class="content">
+                                        0/0
+                                    </label>
+                                </span>
+                                <span class="SR">
+                                    <label class="heading">
+                                        SR
+                                    </label>
+                                    <label class="content">
+                                        4.17
+                                    </label>
+                                </span>
+                            </section> -->
+                            <section class="w-name-details mt-3"
+                                *ngFor="let wicketHighlight of inningWiseDetails[commentaryCurrentInning]?.wicketsHighlights">
+                                <div class="d-flex gap-3">
+                                    <label>{{wicketHighlight.ballNumber}}</label>
+                                    <!-- <span class="align-flex-row w-75"><label class="">b K
+                                            Roach</label></span> -->
+                                </div>
+                                <div class="d-flex gap-3 align-items-center">
+                                    <img src="../../assets/Images/W.svg">
+                                    <label>{{wicketHighlight.commentary}}</label>
+                                </div>
+                            </section>
+
+                            <!-- For no data available -->
+                            <section class="w-name-details mt-3" *ngIf="inningWiseDetails[commentaryCurrentInning]?.wicketsHighlights.length === 0">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <label>No Records Available</label>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- 6s section -->
+                        <div *ngIf="filterBy === 'sixes'">
+                            <section class="six-name-details mt-4"
+                                *ngFor="let sixHighlight of inningWiseDetails[commentaryCurrentInning]?.sixesHighlights">
+                                <div class="d-flex gap-4">
+                                    <label>{{sixHighlight.ballNumber}}</label>
+                                    <!-- <span class="align-flex-row w-75"><label class="">Shanto to J
+                                            Campbell</label></span> -->
+                                </div>
+                                <div class="gap-4 align-flex-row">
+                                    <img class="mt-3" src="../../assets/Images/6.svg">
+                                    <label>{{sixHighlight.commentary}}</label>
+                                </div>
+                            </section>
+
+                            <!-- For no data available -->
+                            <section class="six-name-details mt-4" *ngIf="inningWiseDetails[commentaryCurrentInning]?.sixesHighlights.length === 0">
+                                <div class="gap-4 align-flex-row">
+                                    <label>No Records Available</label>
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <!-- 4s section -->
+                        <div *ngIf="filterBy === 'fours'">
+                            <section class="six-name-details mt-4"
+                                *ngFor="let fourHighlight of inningWiseDetails[commentaryCurrentInning]?.foursHighlights">
+                                <div class="d-flex gap-4">
+                                    <label>{{fourHighlight.ballNumber}}</label>
+                                    <!-- <span class="align-flex-row w-75"><label class="">Shanto to J
+                                            Campbell</label></span> -->
+                                </div>
+                                <div class="gap-4 align-flex-row">
+                                    <img class="mt-3" src="../../assets/Images/4.svg">
+                                    <label>{{fourHighlight.commentary}}</label>
+                                </div>
+                            </section>
+
+                            <!-- For no data available -->
+                            <section class="six-name-details mt-4" *ngIf="inningWiseDetails[commentaryCurrentInning]?.foursHighlights.length === 0">
+                                <div class="gap-4 align-flex-row">
+                                    <label>No Records Available</label>
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <!-- achievements section -->
+                        <!-- <section
+                            class="player-image-name-details d-flex align-items-center justify-content-between mt-4"
+                            *ngIf="filterBy === 'achievements'">
+                            <img src="../../assets/Images/Johnm Campbell.svg" class="players-image position-relative">
+                            <span class="d-flex position-absolute gap-2">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                            </span>
+                            <span class="player-name-heading-content d-flex justify-content-evenly align-items-center">
+                                <span class="player-name-heading d-flex flex-column gap-1">
+                                    <label class="player-name">Johnm Campbell</label>
+                                    <label class="heading">3rd Fifty in TEST </label>
+                                </span>
+                                <label class="content">21.6</label>
+                            </span>
+                        </section>
+                        <section
+                            class="player-image-name-details d-flex align-items-center justify-content-between mt-4"
+                            *ngIf="filterBy === 'achievements'">
+                            <img src="../../assets/Images/Johnm Campbell.svg" class="players-image position-relative">
+                            <span class="d-flex position-absolute gap-2">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                            </span>
+                            <span class="player-name-heading-content d-flex justify-content-evenly align-items-center">
+                                <span class="player-name-heading d-flex flex-column gap-1">
+                                    <label class="player-name">Johnm Campbell</label>
+                                    <label class="heading">3rd Fifty in TEST </label>
+                                </span>
+                                <label class="content">21.6</label>
+                            </span>
+                        </section>
+                        <section
+                            class="player-image-name-details d-flex align-items-center justify-content-between mt-4"
+                            *ngIf="filterBy === 'achievements'">
+                            <img src="../../assets/Images/Johnm Campbell.svg" class="players-image position-relative">
+                            <span class="d-flex position-absolute gap-2">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                                <img src="../../assets/Images/Vector.svg">
+                            </span>
+                            <span class="player-name-heading-content d-flex justify-content-evenly align-items-center">
+                                <span class="player-name-heading d-flex flex-column gap-1">
+                                    <label class="player-name">Johnm Campbell</label>
+                                    <label class="heading">3rd Fifty in TEST </label>
+                                </span>
+                                <label class="content">21.6</label>
+                            </span>
+                        </section> -->
+
+                    </section>
+                </div>
+            </mat-tab>
+            <mat-tab label="Live">
+                <div class="live-wrapper">
+                    <div class="this-over-wrapper mt-4">
+                        <section class="this-over d-flex gap-1"
+                            *ngFor="let overDet of inningWiseDetails[latestInning]?.oversDetails">
+                            <label>ov {{overDet.overNumber}}:</label>
+                            <span class="run-ball"
+                                [ngClass]="{'orange-background': ovHighDet.isBoundary || ovHighDet.isOut}"
+                                *ngFor="let ovHighDet of overDet.overHighlightsDetails">
+                                <label>{{ovHighDet.scoreDisplay}}</label>
+                            </span>
+                        </section>
+                    </div>
+                    <section class="players mt-3">
+                        <div class="batsmen">
+                            <table>
+                                <tr>
+                                    <th>
+                                        Batsmen
+                                    </th>
+                                    <th colspan=3>
+                                        R (B)
+                                    </th>
+                                    <th>
+                                        4s
+                                    </th>
+                                    <th>
+                                        6s
+                                    </th>
+                                    <th>
+                                        SR
+                                    </th>
+                                </tr>
+                                <tr *ngFor="let batting of inningWiseDetails[latestInning]?.battingScoreCard">
+                                    <td *ngIf="batting.dismissalMsg===''">
+                                        <label>{{batting.batterName}}
+                                            <img *ngIf="batting.isOnStrike" width="15" height="15"
+                                                src="assets/icons/on-strike.svg" alt="">
+                                        </label>
+                                    </td>
+                                    <td colspan=3 *ngIf="batting.dismissalMsg===''">
+                                        <label>{{batting.runs}}({{batting.balls}})</label>
+                                    </td>
+                                    <td *ngIf="batting.dismissalMsg===''">
+
+                                        <label>{{batting.fours}}</label>
+                                    </td>
+                                    <td *ngIf="batting.dismissalMsg===''">
+
+                                        <label>{{batting.sixes}}</label>
+                                    </td>
+                                    <td *ngIf="batting.dismissalMsg===''">
+                                        <label>{{batting.strikeRate}}</label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!-- <div class="partnership-last-wkt w-100 align-flex-row">
+                            <span class="d-flex gap-1">
+                                <label class="heading">P'Ship:</label>
+                                <label class="content">15(10)</label>
+                            </span>
+                            <span class="d-flex gap-1">
+                                <label class="heading">Last Wkt :</label>
+                                <label class="content"> Nilansh Kesh 3 (4)</label>
+                            </span>
+                        </div> -->
+                    </section>
+                    <section class="players mt-3">
+                        <div class="bowler">
+                            <table>
+                                <tr>
+                                    <th>
+                                        Bowler:
+                                    </th>
+                                    <th colspan=2>
+                                        W-R
+                                    </th>
+                                    <th>
+                                        Overs
+                                    </th>
+                                    <th>
+                                        Econ
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>{{matchDetails.activeBowler?.name}}</label>
+                                    </td>
+                                    <td colspan=2>
+                                        <label>{{matchDetails.activeBowler?.wickets}}-{{matchDetails.activeBowler?.runs}}</label>
+                                    </td>
+                                    <td>
+                                        <label>{{matchDetails.activeBowler?.overs}}</label>
+                                    </td>
+                                    <td>
+                                        <label>{{matchDetails.activeBowler?.econ}}</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label>{{matchDetails.nonActiveBowler?.name}}</label>
+                                    </td>
+                                    <td colspan=2>
+                                        <label>{{matchDetails.nonActiveBowler?.wickets}}-{{matchDetails.nonActiveBowler?.runs}}</label>
+                                    </td>
+                                    <td>
+                                        <label>{{matchDetails.nonActiveBowler?.overs}}</label>
+                                    </td>
+                                    <td>
+                                        <label>{{matchDetails.nonActiveBowler?.econ}}</label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+                    <!-- <h4 class="mt-4">Projected Score</h4>
+                    <section class="players mt-3">
+                        <div class="projected-score-table">
+                            <table>
+                                <tr>
+                                    <th>
+                                        Run Rate
+                                    </th>
+                                    <th colspan=2>
+                                        6.95*
+                                    </th>
+                                    <th>
+                                        7.00
+                                    </th>
+                                    <th>
+                                        8.00
+                                    </th>
+                                    <th>
+                                        9.00
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        10 Overs
+                                    </td>
+                                    <td colspan=2>
+                                        69
+                                    </td>
+                                    <td>
+                                        70
+                                    </td>
+                                    <td>
+                                        73
+                                    </td>
+                                    <td>
+                                        80
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        10 Overs
+                                    </td>
+                                    <td colspan=2>
+                                        69
+                                    </td>
+                                    <td>
+                                        70
+                                    </td>
+                                    <td>
+                                        73
+                                    </td>
+                                    <td>
+                                        80
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        10 Overs
+                                    </td>
+                                    <td colspan=2>
+                                        69
+                                    </td>
+                                    <td>
+                                        70
+                                    </td>
+                                    <td>
+                                        73
+                                    </td>
+                                    <td>
+                                        80
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </section> -->
+                </div>
+            </mat-tab>
+            <mat-tab label="Scoreboard">
+                <div class="scoreboard-wrapper">
+                    <span class="mt-4 d-flex gap-2">
+                        <button [ngClass]="{'active':tab.value['inningNumber'] ===  scoreboardCurrentInning}"
+                            *ngFor="let tab of inningWiseDetails | keyvalue"
+                            (click)="changeCurrentScoreboardInning(tab.value['inningNumber'])">{{tab.value['headingDisplay']}}</button>
+                        <!-- <button>South Africa</button> -->
+                    </span>
+                    <section class="players mt-3">
+                        <div class="batting">
+                            <table>
+                                <tr>
+                                    <td colspan=7>
+                                        <h5 class="m-0">Batting</h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Batsmen
+                                    </th>
+                                    <th colspan=2>
+                                        R
+                                    </th>
+                                    <th>
+                                        B
+                                    </th>
+                                    <th>
+                                        4s
+                                    </th>
+                                    <th>
+                                        6s
+                                    </th>
+                                    <th>
+                                        SR
+                                    </th>
+                                </tr>
+                                <tr
+                                    *ngFor="let batsman of inningWiseDetails[scoreboardCurrentInning]?.battingScoreCard">
+                                    <td class="d-flex flex-column">
+                                        <label>{{batsman.batterName}}</label>
+                                        <label class="dismissal-msg"
+                                            [ngStyle]="{color: !batsman.dismissalMsg ? '#71EC4C' : ''}">
+                                            {{batsman.dismissalMsg ? batsman.dismissalMsg: 'Not Out'}}
+                                        </label>
+                                    </td>
+                                    <td colspan=2>
+                                        <b> {{batsman.runs}}</b>
+                                    </td>
+                                    <td>
+                                        {{batsman.balls}}
+                                    </td>
+                                    <td>
+                                        {{batsman.fours}}
+                                    </td>
+                                    <td>
+                                        {{batsman.sixes}}
+                                    </td>
+                                    <td>
+                                        {{batsman.strikeRate}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Extra</td>
+                                    <td>{{inningWiseDetails[scoreboardCurrentInning]?.totalExtras}}</td>
+                                    <td colspan=5>
+                                        (b {{inningWiseDetails[scoreboardCurrentInning]?.byes ?
+                                        inningWiseDetails[scoreboardCurrentInning]?.byes : 0}}, lb
+                                        {{inningWiseDetails[scoreboardCurrentInning]?.legByes ?
+                                        inningWiseDetails[scoreboardCurrentInning]?.legByes : 0}}, nb
+                                        {{inningWiseDetails[scoreboardCurrentInning]?.noBalls
+                                        ? inningWiseDetails[scoreboardCurrentInning]?.noBalls : 0}}, w
+                                        {{inningWiseDetails[scoreboardCurrentInning]?.wides ?
+                                        inningWiseDetails[scoreboardCurrentInning]?.wides : 0}} )
+                                    </td>
+                                </tr>
+                                <tr class="total">
+                                    <td colspan=6>Total ({{inningWiseDetails[scoreboardCurrentInning]?.totalOvers}} Ov,
+                                        RR : {{inningWiseDetails[scoreboardCurrentInning]?.runRate}})
+                                    </td>
+                                    <td>{{inningWiseDetails[scoreboardCurrentInning]?.totalScore}}</td>
+                                </tr>
+                                <tr *ngIf="inningWiseDetails[scoreboardCurrentInning]?.yetToBat.length">
+                                    <td colspan=7>
+                                        <span class="d-flex flex-column">
+                                            <label class="orange-font">
+                                                Yet to bat
+                                            </label>
+                                            <label>
+                                                <span
+                                                    *ngFor="let yetToBat of inningWiseDetails[scoreboardCurrentInning]?.yetToBat; let i=index">
+                                                    {{yetToBat.batterName}}
+                                                    {{inningWiseDetails[scoreboardCurrentInning]?.yetToBat.length !==
+                                                    i+1 ? ', ' : ''}}
+                                                </span>
+                                            </label>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="bowling mt-3">
+                            <table>
+                                <tr>
+                                    <td colspan=7>
+                                        <h5 class="m-0">Bowling</h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Bowler
+                                    </th>
+                                    <th colspan=2>
+                                        Ov
+                                    </th>
+                                    <th>
+                                        M
+                                    </th>
+                                    <th>
+                                        R
+                                    </th>
+                                    <th>
+                                        W
+                                    </th>
+                                    <th>
+                                        ECO
+                                    </th>
+                                </tr>
+                                <tr
+                                    *ngFor="let bowling of inningWiseDetails[scoreboardCurrentInning]?.bowlingScoreCard">
+                                    <td>
+                                        {{bowling.bowlerName}}
+                                    </td>
+                                    <td colspan=2>
+                                        {{bowling.overs}}
+                                    </td>
+                                    <td>
+                                        {{bowling.maiden}}
+                                    </td>
+                                    <td>
+                                        {{bowling.runs}}
+                                    </td>
+                                    <td>
+                                        {{bowling.wickets}}
+                                    </td>
+                                    <td>
+                                        {{bowling.econ}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="fall-of-wkts mt-3"
+                            *ngIf="inningWiseDetails[scoreboardCurrentInning]?.fallOfWickets.length">
+                            <table>
+                                <tr>
+                                    <td colspan=7>
+                                        <h5 class="m-0">Fall of Wicket</h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Batter
+                                    </th>
+                                    <th colspan=2>
+                                        Score
+                                    </th>
+                                    <th>
+                                        Over
+                                    </th>
+                                </tr>
+                                <tr *ngFor="let fallOfWkt of inningWiseDetails[scoreboardCurrentInning]?.fallOfWickets">
+                                    <td class="d-flex flex-column">
+                                        <label>{{fallOfWkt.batterName}}</label>
+                                        <label class="dismissal-msg">{{fallOfWkt.dismissalMsg}}</label>
+                                    </td>
+                                    <td colspan=2>
+                                        {{fallOfWkt.atScore}}
+                                    </td>
+                                    <td>
+                                        {{fallOfWkt.atOver}}
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </section>
+                </div>
+            </mat-tab>
+            <mat-tab label="H2H">
+                <div class="h2h-wrapper">
+                    <div class="match-commentary">
+                        <div class="scroll-key-events">
+                            <span class="key-events d-flex align-items-center justify-content-between mt-3">
+                                <div class="highlights orange-background align-flex-row">
+                                    <label class="h2h-tabs">Overall</label>
+                                </div>
+                                <div class="overs align-flex-row">
+                                    <label class="h2h-tabs">Test</label>
+                                </div>
+                                <div class="w align-flex-row">
+                                    <label class="h2h-tabs">ODI</label>
+                                </div>
+                                <div class="six align-flex-row">
+                                    <label class="h2h-tabs">T20</label>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <mat-expansion-panel class="match-details mt-4" [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Previous Matches : {{matchDetails.homeTeamCode}}</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="previous-match-details d-flex w-100 justify-content-between align-items-center mt-4"
+                            *ngFor="let data of homeTeamPreviousMatchesData">
+                            <div class="d-flex gap-4" >
+                                <section class="align-flex-column gap-2">
+                                    <div class="gap-2 align-flex-row">
+                                        <img width="35" height="35" src="{{data.homeTeamUrl}}" alt="">
+                                        <label class="white-font"> {{data.homeTeamCode}}</label>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <img width="35" height="35" src="{{data.awayTeamUrl}}" alt="">
+                                        <label class="white-font"> {{data.awayTeamCode}}</label>
+                                    </div>
+
+                                </section>
+                                <section class="align-flex-column gap-3">
+                                    <div class="align-flex-row gap-2" *ngIf="data.displayMessage !== 'Result not available'">
+                                        <label class="white-font">{{data.displayScore.homeDisplayScore}}</label>
+                                        <label class="white-font">{{data.displayScore.homeDisplayOver}}</label>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2" *ngIf="data.displayMessage !== 'Result not available'">
+                                        <label class="white-font">{{data.displayScore.awayDisplayScore}}</label>
+                                        <label class="white-font">{{data.displayScore.awayDisplayOver}}</label>
+                                    </div>
+                                    <div *ngIf="data.displayMessage === 'Result not available'">
+                                        <label for="" class="white-font">{{data.displayMessage}}</label>
+                                    </div>
+                                </section>
+                            </div>
+                            <section>
+                                <img src="../../assets/icons/h2h-winicon.svg" alt=""
+                                    *ngIf="data.matchWinnerId && data.homeTeamId === data.matchWinnerId">
+                                <img src="../../assets/icons/h2h-lose.svg" alt=""
+                                    *ngIf="data.matchWinnerId && data.homeTeamId !== data.matchWinnerId">
+                            </section>
+                        </div>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel class="match-details mt-4" [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Previous Matches : {{matchDetails.awayTeamCode}}</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="previous-match-details d-flex w-100 justify-content-between align-items-center mt-4"
+                            *ngFor="let data of awayTeamPreviousMatchesData">
+                            <div class="d-flex gap-4">
+                                <section class="align-flex-column gap-2">
+                                    <div class="gap-2 align-flex-row">
+                                        <img width="35" height="35" src="{{data.homeTeamUrl}}" alt="">
+                                        <label class="white-font"> {{data.homeTeamCode}}</label>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <img width="35" height="35" src="{{data.awayTeamUrl}}" alt="">
+                                        <label class="white-font"> {{data.awayTeamCode}}</label>
+                                    </div>
+
+                                </section>
+                                <section class="align-flex-column gap-3">
+                                    <div class="align-flex-row gap-2" *ngIf="data.displayMessage !== 'Result not available'">
+                                        <label class="white-font">{{data.displayScore.homeDisplayScore}}</label>
+                                        <label class="white-font">{{data.displayScore.homeDisplayOver}}</label>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2" *ngIf="data.displayMessage !== 'Result not available'">
+                                        <label class="white-font">{{data.displayScore.awayDisplayScore}}</label>
+                                        <label class="white-font">{{data.displayScore.awayDisplayOver}}</label>
+                                    </div>
+                                    <div *ngIf="data.displayMessage === 'Result not available'">
+                                        <label for="" class="white-font">{{data.displayMessage}}</label>
+                                    </div>
+                                </section>
+                            </div>
+                            <section>
+                                <img src="../../assets/icons/h2h-winicon.svg" alt=""
+                                    *ngIf="data.matchWinnerId && data.homeTeamId === data.matchWinnerId">
+                                <img src="../../assets/icons/h2h-lose.svg" alt=""
+                                    *ngIf="data.matchWinnerId && data.homeTeamId !== data.matchWinnerId">
+                            </section>
+                        </div>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel class="match-details mt-4" [expanded]="true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Previous Matches : both</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="previous-match-details d-flex w-100 justify-content-between align-items-center mt-4"
+                            *ngFor="let data of bothTeamsPreviousMatchesData">
+                            <div class="d-flex gap-4">
+                                <section class="gap-2 align-flex-column">
+                                    <div class="gap-2 align-flex-row">
+                                        <img width="35" height="35" src="{{data.homeTeamUrl}}" alt="">
+                                        <label class="white-font">{{data.homeTeamCode}}</label>
+                                    </div>
+                                    <div class="d-flex gap-2 align-items-center">
+                                        <img width="35" height="35" src="{{data.awayTeamUrl}}" alt="">
+                                        <label class="white-font">{{data.awayTeamCode}}</label>
+                                    </div>
+
+                                </section>
+                                <section class="gap-3 align-flex-column">
+                                    <div class="align-flex-row gap-2" *ngIf="data.displayMessage !== 'Result not available'">
+                                        <label class="white-font">{{data.displayScore.homeDisplayScore}}</label>
+                                        <label class="white-font">{{data.displayScore.homeDisplayOver}}</label>
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2" *ngIf="data.displayMessage !== 'Result not available'">
+                                        <label class="white-font">{{data.displayScore.awayDisplayScore}}</label>
+                                        <label class="white-font">{{data.displayScore.awayDisplayOver}}</label>
+                                    </div>
+                                    <div *ngIf="data.displayMessage === 'Result not available'">
+                                        <label for="" class="white-font">{{data.displayMessage}}</label>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </section>
+</div>
+<!-- <app-footer></app-footer> -->

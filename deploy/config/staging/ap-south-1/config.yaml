@@ -1,0 +1,7 @@
+environment: staging
+region: ap-south-1
+vpc_id: vpc-03bb2efe17610ef13
+public_subnet_ids: subnet-0d2f91305c2cadc69, subnet-0b542eae2ded1e746
+private_subnet_ids: subnet-0151b6981d7aa5913, subnet-0903fe22aeb68f517
+service_port: "80"
+cluster_name: sportsbuzz

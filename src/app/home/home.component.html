@@ -1,0 +1,466 @@
+<app-header></app-header>
+<!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#ff9d42" type = "ball-clip-rotate-pulse" [fullScreen] = "false">
+    <p class="mt-5" style="color: #ff9d42" > Loading... </p></ngx-spinner> -->
+<!-- Mobile Screen -->
+<div class="main-home-wrapper" *ngIf="!isDesktopScreen">
+
+<div class="home-header">
+    <span [ngClass]="{'active': currentTab === 0}" (click)="changeTab(0)">Matches ({{eachTabLength(0)}})</span>
+    <span [ngClass]="{'active': currentTab === i+1}" *ngFor="let tab of tabsData | keyvalue: originalOrder;let i=index"
+        (click)="changeTab(i+1)">
+        {{tab.key}} ({{eachTabLength(i+1)}})
+    </span>
+</div>
+<div class="home-wrapper">
+    <h4>NEWS</h4>
+    <section class="home-wrapper__tab-images align-flex-row w-100 gap-5">
+        <span class="d-flex flex-column gap-3">
+            <img class="ms-2" src="../../assets/Images/cricket-tab-border.svg" (click)="navigateToSportsNews('cricket')" width="50">
+            <button class="cricket-btn" (click)="navigateToSportsNews('cricket')">Cricket</button>
+        </span>
+        <span class="d-flex flex-column gap-3">
+            <img class="ms-2" src="../../assets/Images/football-tab.svg" (click)="navigateToSportsNews('football')" width="50">
+            <button class="btn" (click)="navigateToSportsNews('football')">Football</button>
+        </span>
+        <span class="d-flex flex-column gap-3">
+            <img class="ms-2" src="../../assets/Images/tennis-tab.svg" (click)="navigateToSportsNews('tennis')" width="50">
+            <button class="btn" (click)="navigateToSportsNews('tennis')">Tennis</button>
+        </span>
+    </section>
+    <hr>
+
+    <div class="month d-flex align-items-center justify-content-between mt-4">
+        <div class="current-month">
+            <label class="month-name orange-font" for="">{{currentMonth | uppercase }}</label>
+          </div>
+          <button class="" (click)="goToCurrentDate()" *ngIf="showGoToCurrentDateButton()">TODAY</button>
+
+    </div>
+    <section class="home-wrapper__calendar d-flex ms-2 mt-2 mb-3">
+
+        <cdk-virtual-scroll-viewport orientation="horizontal" itemSize="60" minBufferPx="400" maxBufferPx="1000"
+            (scrolledIndexChange)="changeMonth($event)" id="scroll_div">
+            <div *cdkVirtualFor="let date of allDates" class="date" (click)="onDateSelectionChange(date)"
+                [ngClass]="{'is-active':date===selectedDate}" id="{{date}}">
+                <span class="weekDate"> {{date | date:'dd'}}</span>
+                <span class="weekDay">{{returnWeekDay(date)}}</span>
+            </div>
+        </cdk-virtual-scroll-viewport>
+    </section>
+
+    <section class="mt-3">
+        <mat-tab-group animationDuration="0ms" [selectedIndex]="currentTab">
+            <mat-tab label="Matches ({{allMatchesData?.length}})">
+                <div class="home-wrapper__match-card-wrapper">
+                    <div class="match-card shimmer" *ngIf="showShimmer">
+                        <section class="match-card__header d-flex align-items-center">
+                           
+                        </section>
+                        <section class="match-card__content d-flex justify-content-between">
+                            
+                        </section>
+                        <hr>
+                        <section class="match-card__footer w-100 d-flex justify-content-between">
+                           
+                        </section>
+                    </div>
+                    <div class="match-card" *ngFor="let upcoming of allMatchesData | matchFilter: selectedDate" (click)="goToViewDetailsPage(upcoming)">
+                        <section class="match-card__header d-flex align-items-center">
+                            <span class="col-9">{{upcoming.seasonName}}</span>
+                            <span class="live col-3 text-end" *ngIf="upcoming.matchStatus==='Live'">LIVE</span>
+                            <span class="finished col-3 text-end" *ngIf="upcoming.matchStatus==='Finished'">FINISHED</span>
+                        </section>
+                        <section class="match-card__content d-flex justify-content-between">
+                            <div class="teams d-flex gap-3 align-items-center justify-content-center">
+                                <span class="team-code align-flex-column gap-2">
+                                    <div class="align-flex-row">
+                                        <!-- <img src="../../assets/icons/favourite-icon.svg" alt="Icon">&nbsp; -->
+                                        <img width="35" height="35" src='{{upcoming.homeTeamUrl}}' onerror="this.onerror=null;this.src='https://www.logopik.com/wp-content/uploads/edd/2018/06/Cricket-Logo-Design.png';">&nbsp;
+                                        {{upcoming.homeTeamCode}}
+                                        {{upcoming.tournamentGender === 'women' ? ' - W' : ''}}
+                                        <!-- {{upcoming.currentBattingTeam.isHomeTeamBatting ? '&#8226;' : ''}} -->
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <!-- <img src="../../assets/icons/favourite-icon.svg" alt="Icon">&nbsp;&nbsp; -->
+                                        <img width="35" height="35" src='{{upcoming.awayTeamUrl}}' onerror="this.onerror=null;this.src='https://www.logopik.com/wp-content/uploads/edd/2018/06/Cricket-Logo-Design.png';">&nbsp;
+                                        {{upcoming.awayTeamCode}}
+                                        {{upcoming.tournamentGender === 'women' ? ' - W' : ''}}
+                                        <!-- {{upcoming.currentBattingTeam.isAwayTeamBatting ? '&#8226;' : ''}} -->
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="scores d-flex flex-column justify-content-around gap-2">
+                                <span class="mt-2 align-flex-row gap-2">
+                                    <label class="over">{{upcoming.displayScoreOver.homeDisplayOver }} &nbsp;</label>
+                                    <label class="score">{{upcoming.displayScoreOver.homeDisplayScore}}</label>
+                                </span>
+                                <span class="mt-2 align-flex-row gap-2">
+                                    <label class="over">{{upcoming.displayScoreOver.awayDisplayOver }}&nbsp;</label>
+                                    <label class="score">{{upcoming.displayScoreOver.awayDisplayScore}}</label>
+                                </span>
+                            </div>
+                        </section>
+                        <!-- <span class="ms-3 orange-font" *ngIf="upcoming.matchStatus==='Not Started'">
+                            Match will start in {{upcoming.matchScheduledDate|date:'hh'}} Hr: {{upcoming.matchScheduledDate|date:'mm'}} Min
+                         </span> -->
+                        <hr>
+                        <section class="match-card__footer w-100 d-flex justify-content-between">
+                            <label class="" *ngIf="upcoming.matchStatus==='Not Started'">{{upcoming.matchStartTimer}}</label>
+                            <label *ngIf="upcoming.matchStatus !== 'Not Started'">{{upcoming.displayMessage}} </label>
+                            <!-- <span class="orange-font">View Details </span> -->
+                        </section>
+                    </div>
+                    <div class="no-matches-found" *ngIf="noMatchData">
+                        <img width="330" height="500" src="assets/new images/no-match-01.jpg" alt="">
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="{{tab.key}} ({{objectKeys(tab.value).length}})"
+                *ngFor="let tab of tabsData | keyvalue: originalOrder">
+                <div class="home-wrapper__match-card-wrapper">
+                    <div class="match-card shimmer" *ngIf="showShimmer">
+                        <section class="match-card__header d-flex align-items-center">
+                           
+                        </section>
+                        <section class="match-card__content d-flex justify-content-between">
+                            
+                        </section>
+                        <hr>
+                        <section class="match-card__footer w-100 d-flex justify-content-between">
+                           
+                        </section>
+                    </div>
+                    
+                    <div class="match-card" *ngFor="let upcoming of tab.value | matchFilter: selectedDate" (click)="goToViewDetailsPage(upcoming)">
+                        <section class="match-card__header align-flex-row gap-2">
+                            <span class="col-9">{{upcoming.seasonName}}</span>
+                            <span class="live col-3" *ngIf="upcoming.matchStatus==='Live'">LIVE</span>
+                            <span class="finished col-3" *ngIf="upcoming.matchStatus==='Finished'">FINISHED</span>
+                        </section>
+                        <section class="match-card__content d-flex justify-content-between align-items-start">
+                            <div class="teams d-flex gap-3">
+
+                                <span class="team-code align-flex-column gap-2">
+                                    <div class="align-flex-row">
+                                        <!-- <img src="../../assets/icons/favourite-icon.svg" alt="Icon">&nbsp; -->
+                                        <img width="35" height="35" src='{{upcoming.homeTeamUrl}}' onerror="this.onerror=null;this.src='https://www.logopik.com/wp-content/uploads/edd/2018/06/Cricket-Logo-Design.png';">&nbsp;
+                                        {{upcoming.homeTeamCode}}
+                                        {{upcoming.tournamentGender === 'women' ? ' - W' : ''}}
+                                        <!-- {{upcoming.currentBattingTeam.isHomeTeamBatting ? '&#8226;' : ''}} -->
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <!-- <img src="../../assets/icons/favourite-icon.svg" alt="Icon">&nbsp;&nbsp; -->
+                                        <img width="35" height="35" src='{{upcoming.awayTeamUrl}}' onerror="this.onerror=null;this.src='https://www.logopik.com/wp-content/uploads/edd/2018/06/Cricket-Logo-Design.png';">&nbsp;
+                                        {{upcoming.awayTeamCode}}
+                                        {{upcoming.tournamentGender === 'women' ? ' - W' : ''}}
+                                        <!-- {{upcoming.currentBattingTeam.isAwayTeamBatting ? '&#8226;' : ''}} -->
+                                    </div>
+                                </span>
+                            </div>
+                            <div class="scores d-flex flex-column gap-2">
+                                <span class="mt-2 align-flex-row gap-2">
+                                    <label class="over">{{upcoming.displayScoreOver.homeDisplayOver }}</label>
+                                    <label class="score">{{upcoming.displayScoreOver.homeDisplayScore}}</label>
+                                </span>
+                                <span class="mt-2 align-flex-row gap-2">
+                                    <label class="over">{{upcoming.displayScoreOver.awayDisplayOver }}</label>
+                                    <label class="score">{{upcoming.displayScoreOver.awayDisplayScore}}</label>
+                                </span>
+                            </div>
+                        </section>
+                        <!-- <span class="ms-3 orange-font" *ngIf="upcoming.matchStatus==='Not Started'"></span> -->
+                        <hr>
+                        <section class="match-card__footer w-100 d-flex justify-content-between">
+                            <label class="" *ngIf="upcoming.matchStatus==='Not Started'">{{upcoming.matchStartTimer}}</label>
+                            <label *ngIf="upcoming.matchStatus !== 'Not Started'">{{upcoming.displayMessage}} </label>
+                            <!-- <span class="orange-font" (click)="goToViewDetailsPage(upcoming)">View Details </span> -->
+                        </section>
+                    </div>
+                    <div class="no-matches-found" *ngIf="noMatchData">
+                        <img width="330" height="500" src="assets/new images/no-match-01.jpg" alt="" (click)="navigateToHomePage()">
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </section>
+    <div class="ads-image mt-4 mb-5 align-flex-row">
+        <img src="../../assets/Images/about-us-ads.svg">
+    </div>
+    <!-- <div class="align-flex-row mt-3">
+        <label class="heading">Sponsored by &nbsp;&nbsp;<img src="../../assets/Images/laser-book.gif" width="100"
+                alt=""></label>
+    </div> -->
+    <!-- <section>
+        <div class="d-flex align-items-baseline mt-3">
+            <h6>PRE MATCH ANALYSIS</h6>&nbsp;&nbsp;<img class="arrow-icon" src="../../assets/icons/right-arrow.svg"
+                alt="">
+        </div>
+        <div class="horizontal-video-scroll">
+            <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+                <video id="{{i}}" controls controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                    <source class="mt-2" src="../../../assets/Videos/JR-1.mp4" type="video/mp4">
+                </video>
+                <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                    class="overlay position-absolute justify-content-center" height="60">
+                <div class="paragraph-1">
+                    <label class="orange-font">JONTY RHODES</label>
+                    <span class="d-flex justify-content-between">
+                        <label for="">Ind vs SA Pre Match Analysis ft. Jonty Rhodes
+                            Description: Know all about the pitch, the weather, playing XI, their strengths, and more with the expertise of an ex-star player himself!
+                            </label>
+                    </span>
+                </div>
+            </section>
+            <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+                <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                    <source src="../../../assets/Videos/AC-1.mp4" type="video/mp4">
+                </video>
+                <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                    class="overlay position-absolute justify-content-center" height="60">
+                <div class="paragraph-1">
+                    <label class="orange-font">AAKASH CHOPRA</label>
+                    <span class="d-flex justify-content-between">
+                        <label for="">Aakash Chopra Pre-match analysis of India vs Africa a 5-match T20I series
+                            Description: ''This 5-match T20I series is a return of favor to South Africa" Ft. Aakash Chopra.
+                            </label>
+                    </span>
+                </div>
+            </section>
+            <section class="player-image-name-status align-flex-column row position-relative" *ngFor="let test of testing;let i=index">
+                <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                    <source src="../../../assets/Videos/MP-2.mp4" type="video/mp4">
+                </video>
+                <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                    class="overlay position-absolute justify-content-center" height="60">
+                <div class="paragraph-1">
+                    <label class="orange-font">MONTY PANESAR</label>
+                    <span class="d-flex justify-content-between">
+                        <label for="">IND vs SA 2nd T20I Post Match Analysis ft Monty Panesar
+                            Description: Monty Panesar analyzed all that went right and wrong for the South African Cricket Team and Indian Cricket Team respectively.
+                            </label>
+                    </span>
+                </div>
+            </section>
+
+
+            <section class="player-image-name-status align-flex-column gap-1 mt-3 row position-relative">
+                <video controls class="video" #video (playing)="onPlayingVideo($event)">
+                    <source src="../../assets/Videos/Football-Messi-Video.mp4" type="video/mp4">
+                </video>
+                <img src="../../assets/icons/play-button.svg" *ngIf="isplay" (click)="playVideo()"
+                    class="overlay position-absolute" height="70">
+                <div class="name-status">
+                    <span class="d-flex justify-content-between">
+                        <h5 class="orange-font">JONTY RHODES</h5>
+                        <h5>LIVE<img src="../../assets/icons/live-icon.svg" alt=""></h5>
+                    </span>
+                    <span>
+                        <label for=""><b>IND vs ENG T20 Series</b></label>
+                        <label for="">All you want to know about India England T20 Series by Aakash Chopra</label>
+                    </span>
+                    <span class="d-flex justify-content-between">
+                        <label class="mt-2">JUL 7, 2022</label>
+                        <p>8:30 PM</p>
+                    </span>
+                </div>
+
+            </section>
+
+            <section class="player-image-name-status align-flex-column gap-1 mt-3 row position-relative">
+                <video controls class="video" #video>
+                    <source src="../../assets/Videos/Football-Messi-Video.mp4" type="video/mp4">
+                </video>
+                <img src="../../assets/icons/play-button.svg" *ngIf="isplay" (click)="playVideo()"
+                    class="overlay position-absolute" height="70">
+                <div class="name-status">
+                    <span class="d-flex justify-content-between">
+                        <h5 class="orange-font">JONTY RHODES</h5>
+                        <h5>LIVE<img src="../../assets/icons/live-icon.svg" alt=""></h5>
+                    </span>
+                    <span>
+                        <label for=""><b>IND vs ENG T20 Series</b></label>
+                        <label for="">All you want to know about India England T20 Series by Aakash Chopra</label>
+                    </span>
+                    <span class="d-flex justify-content-between">
+                        <label class="mt-2">JUL 7, 2022</label>
+                        <p>8:30 PM</p>
+                    </span>
+                </div>
+
+            </section>
+        </div>
+    </section> -->
+    <!-- <iframe src="https://player.vimeo.com/video/717526517?h=41bb920377&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479?autopause=0" width="500" height="500" frameborder="0" allow="autopause; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/717526517?h=41bb920377&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479?autopause=0" width="500" height="500" frameborder="0" allow="autopause; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/717526517?h=41bb920377&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479?autopause=0" width="500" height="500" frameborder="0" allow="autopause; fullscreen; picture-in-picture" allowfullscreen></iframe> -->
+</div>
+</div>
+<!-- End of Mobile Screen -->
+
+<!-- Start of Desktop Screen -->
+<div *ngIf="isDesktopScreen">
+    <div class="home-header">
+        <span [ngClass]="{'active': currentTab === 0}" (click)="changeTab(0)">Matches ({{eachTabLength(0)}})</span>
+        <span [ngClass]="{'active': currentTab === i+1}" *ngFor="let tab of tabsData | keyvalue: originalOrder;let i=index"
+            (click)="changeTab(i+1)">
+            {{tab.key}} ({{eachTabLength(i+1)}})
+        </span>
+    </div>
+    <div class="home-wrapper">
+        <section class="home-wrapper__tab-images justify-content-evenly w-100">
+            <span class="align-flex-column gap-4">
+                <img src="../../assets/Images/cricket-ball-tab.gif" width="100">
+                <button class="cricket-btn">Cricket</button>
+            </span>
+            <span class="align-flex-column gap-4">
+                <img class="ms-2" src="../../assets/Images/football-tab.svg" width="80">
+                <button class="btn">Football</button>
+            </span>
+            <span class="align-flex-column gap-4">
+                <img class="ms-2" src="../../assets/Images/tennis-tab.svg" width="80">
+                <button class="btn">Tennis</button>
+            </span>
+        </section>
+        <section class="mt-5">
+            <mat-tab-group animationDuration="0ms" [selectedIndex]="currentTab">
+                <mat-tab label="Matches ({{allMatchesData?.length}})">
+                    <div class="home-wrapper__match-card-wrapper">
+                        <div class="match-card" *ngFor="let upcoming of allMatchesData | matchFilter: selectedDate" (click)="goToViewDetailsPage(upcoming)">
+                            <section class="match-card__header d-flex align-items-center">
+                                <span class="col-9">{{upcoming.seasonName}}</span>
+                                <span class="live col-3 text-end" *ngIf="upcoming.matchStatus==='Live'">LIVE</span>
+                                <span class="finished col-3 text-end" *ngIf="upcoming.matchStatus==='Finished'">FINISHED</span>
+                            </section>
+                            <section class="match-card__content d-flex justify-content-between">
+                                <div class="teams d-flex gap-3 align-items-center justify-content-center">
+                                    <span class="team-code align-flex-column gap-2">
+                                        <div class="align-flex-row">
+                                            <!-- <img src="../../assets/icons/favourite-icon.svg" alt="Icon">&nbsp; -->
+                                            <img width="35" height="35" src='{{upcoming.homeTeamUrl}}' onerror="this.onerror=null;this.src='https://www.logopik.com/wp-content/uploads/edd/2018/06/Cricket-Logo-Design.png';">&nbsp;
+                                            {{upcoming.homeTeamCode}}
+    
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <!-- <img src="../../assets/icons/favourite-icon.svg" alt="Icon">&nbsp;&nbsp; -->
+                                            <img width="35" height="35" src='{{upcoming.awayTeamUrl}}' onerror="this.onerror=null;this.src='https://www.logopik.com/wp-content/uploads/edd/2018/06/Cricket-Logo-Design.png';">&nbsp;
+                                            {{upcoming.awayTeamCode}}
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="scores d-flex flex-column justify-content-around gap-2">
+                                    <span class="mt-2 align-flex-row gap-2">
+                                        <label class="over">{{upcoming.displayScoreOver.homeDisplayOver }} &nbsp;</label>
+                                        <label class="score">{{upcoming.displayScoreOver.homeDisplayScore}}</label>
+                                    </span>
+                                    <span class="mt-2 align-flex-row gap-2">
+                                        <label class="over">{{upcoming.displayScoreOver.awayDisplayOver }}&nbsp;</label>
+                                        <label class="score">{{upcoming.displayScoreOver.awayDisplayScore}}</label>
+                                    </span>
+                                </div>
+                            </section>
+                            <!-- <span class="ms-3 orange-font" *ngIf="upcoming.matchStatus==='Not Started'">
+                                Match will start in {{upcoming.matchScheduledDate|date:'hh'}} Hr: {{upcoming.matchScheduledDate|date:'mm'}} Min
+                             </span> -->
+                            <hr>
+                            <section class="match-card__footer w-100 d-flex justify-content-between">
+                                <label class="" *ngIf="upcoming.matchStatus==='Not Started'">{{upcoming.matchStartTimer}}</label>
+                                <label *ngIf="upcoming.matchStatus !== 'Not Started'">{{upcoming.displayMessage}} </label>
+                                <!-- <span class="orange-font">View Details </span> -->
+                            </section>
+                        </div>
+                        <div class="no-matches-found" *ngIf="noMatchData">
+                            <img width="330" height="500" src="assets/new images/no-match-01.jpg" alt="">
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="{{tab.key}} ({{objectKeys(tab.value).length}})"
+                    *ngFor="let tab of tabsData | keyvalue: originalOrder">
+                    <div class="home-wrapper__match-card-wrapper">
+                        <div class="match-card" *ngFor="let upcoming of tab.value | matchFilter: selectedDate" (click)="goToViewDetailsPage(upcoming)">
+                            <section class="match-card__header align-flex-row gap-2">
+                                <span class="col-9">{{upcoming.seasonName}}</span>
+                                <span class="live col-3" *ngIf="upcoming.matchStatus==='Live'">LIVE</span>
+                                <span class="finished col-3" *ngIf="upcoming.matchStatus==='Finished'">FINISHED</span>
+                            </section>
+                            <section class="match-card__content d-flex justify-content-between align-items-start">
+                                <div class="teams d-flex gap-3">
+    
+                                    <span class="team-code align-flex-column gap-2">
+                                        <div class="align-flex-row">
+                                            <!-- <img src="../../assets/icons/favourite-icon.svg" alt="Icon">&nbsp; -->
+                                            <img width="35" height="35" src='{{upcoming.homeTeamUrl}}' onerror="this.onerror=null;this.src='https://www.logopik.com/wp-content/uploads/edd/2018/06/Cricket-Logo-Design.png';">&nbsp;
+                                            {{upcoming.homeTeamCode}}
+    
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <!-- <img src="../../assets/icons/favourite-icon.svg" alt="Icon">&nbsp;&nbsp; -->
+                                            <img width="35" height="35" src='{{upcoming.awayTeamUrl}}' onerror="this.onerror=null;this.src='https://www.logopik.com/wp-content/uploads/edd/2018/06/Cricket-Logo-Design.png';">&nbsp;
+                                            {{upcoming.awayTeamCode}}
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="scores d-flex flex-column gap-2">
+                                    <span class="mt-2 align-flex-row gap-2">
+                                        <label class="over">{{upcoming.displayScoreOver.homeDisplayOver }}</label>
+                                        <label class="score">{{upcoming.displayScoreOver.homeDisplayScore}}</label>
+                                    </span>
+                                    <span class="mt-2 align-flex-row gap-2">
+                                        <label class="over">{{upcoming.displayScoreOver.awayDisplayOver }}</label>
+                                        <label class="score">{{upcoming.displayScoreOver.awayDisplayScore}}</label>
+                                    </span>
+                                </div>
+                            </section>
+                            <!-- <span class="ms-3 orange-font" *ngIf="upcoming.matchStatus==='Not Started'"></span> -->
+                            <hr>
+                            <section class="match-card__footer w-100 d-flex justify-content-between">
+                                <label class="" *ngIf="upcoming.matchStatus==='Not Started'">{{upcoming.matchStartTimer}}</label>
+                                <label *ngIf="upcoming.matchStatus !== 'Not Started'">{{upcoming.displayMessage}} </label>
+                                <!-- <span class="orange-font" (click)="goToViewDetailsPage(upcoming)">View Details </span> -->
+                            </section>
+                        </div>
+                        <div class="no-matches-found" *ngIf="noMatchData">
+                            <img width="330" height="500" src="assets/new images/no-match-01.jpg" alt="">
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </section>
+        <!-- <div class="align-flex-row mt-5">
+            <label class="heading">Sponsored by &nbsp;&nbsp;<img src="../../assets/Images/laser-book.gif" width="100"
+                    alt=""></label>
+        </div> -->
+        <section>
+            <div class="d-flex align-items-baseline mt-5">
+                <h6>PRE MATCH ANALYSIS</h6>&nbsp;&nbsp;<img class="arrow-icon" src="../../assets/icons/right-arrow.svg"
+                    alt="">
+            </div>
+            <div class="horizontal-video-scroll">
+                <section class="player-image-name-status align-flex-column gap-1 mt-3 row position-relative" *ngFor="let test of testing;let i=index">
+                    <video id="{{i}}" controls  controlsList="nodownload" class="video" (playing)="onPlayingVideo($event, i)" (pause)="onPausingVideo()">
+                        <source src="../../assets/Videos/batsmen-statdrive-vdo.mp4" type="video/mp4">
+                    </video>
+                    <img src="../../assets/icons/play-button.svg" *ngIf="currentVideoPlayingIndex !== i" (click)="playVideo(i)"
+                        class="overlay position-absolute" height="70">
+                    <div class="name-status">
+                        <span class="d-flex justify-content-between">
+                            <label class="orange-font">JONTY RHODES</label>
+                            <label class="blink-live">LIVE<img src="../../assets/icons/live-icon.svg" alt=""></label>
+                        </span>
+                        <span>
+                            <label for=""><b>IND vs ENG T20 Series</b></label>
+                            <label for="">All you want to know about India England T20 Series by Aakash Chopra</label>
+                        </span>
+                        <span class="date-time d-flex justify-content-between align-items-center mt-2">
+                            <label>JUL 7, 2022</label>
+                            <label>8:30 PM</label>
+                        </span>
+                    </div>
+    
+                </section>
+            </div>
+        </section>
+<app-news></app-news>
+    </div>
+</div>
+<!-- End of Desktop Screen -->
+<app-footer></app-footer>
